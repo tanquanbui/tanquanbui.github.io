@@ -1,70 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
-    <title>Coming Soon | How to learn vietnamese</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quan Bui | Cloud & IT Graduate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="outerpage">
-        <div class="innerpage">
-            <h1 class="animate-character">Coming Soon</h1>
-            <h2>We are creating the perfect place for you to learn and improve your vietnamese skill</h2>
-            <h2>howtolearnvietnamese.com</h2>
-            <div class="timer">
-                <div class="days">
-                    <h1 id="days">19</h1>
-                    <h2>days</h2>
-                </div>
-                <div class="hours">
-                    <h1 id="hours">19</h1>
-                    <h2>hours</h2>
-                </div>
-                <div class="minute">
-                    <h1 id="minutes">19</h1>
-                    <h2>minutes</h2>
-                </div>
-                <div class="seconds">
-                    <h1 id="seconds">19</h1>
-                    <h2>seconds</h2>
-                </div>
-            </div>
-        </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-name">
+        <h1>Quan Bui</h1>
+        <p class="tagline">IT Graduate &mdash; Cloud &amp; Infrastructure Focused</p>
+      </div>
+      <nav class="header-contact">
+        <a href="mailto:tanquanbui@email.com">tanquanbui@email.com</a>
+        <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/tanquanbui" target="_blank" rel="noopener">GitHub</a>
+        <span class="location">Melbourne, VIC, Australia</span>
+      </nav>
     </div>
+  </header>
+
+  <!-- ========== MAIN ========== -->
+  <main class="container main-layout">
+
+    <!-- -------- LEFT COLUMN -------- -->
+    <aside class="sidebar">
+
+      <!-- Skills -->
+      <section class="card" aria-labelledby="skills-heading">
+        <h2 id="skills-heading">Skills</h2>
+
+        <div class="skill-group">
+          <h3>Cloud &amp; Infrastructure</h3>
+          <ul>
+            <li>Amazon Web Services (S3, CloudFront, Lambda, API Gateway, DynamoDB, CloudFormation, IAM)</li>
+            <li>Static website hosting &amp; CDN</li>
+            <li>Serverless architecture</li>
+            <li>Infrastructure as Code (CloudFormation / SAM)</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Programming</h3>
+          <ul>
+            <li>Python (scripting, Lambda)</li>
+            <li>HTML &amp; CSS</li>
+            <li>JavaScript (Fetch API, DOM)</li>
+            <li>SQL (MySQL, SQLite)</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Tools &amp; Practices</h3>
+          <ul>
+            <li>Git &amp; GitHub</li>
+            <li>Linux / Bash</li>
+            <li>REST APIs</li>
+            <li>CI/CD concepts</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Certifications -->
+      <section class="card" aria-labelledby="certs-heading">
+        <h2 id="certs-heading">Certifications</h2>
+        <ul class="cert-list">
+          <li>
+            <span class="cert-name">AWS Certified Cloud Practitioner (CLF-C02)</span>
+            <span class="cert-status in-progress">In Progress</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Education -->
+      <section class="card" aria-labelledby="edu-heading">
+        <h2 id="edu-heading">Education</h2>
+        <div class="edu-item">
+          <p class="edu-degree">Bachelor of Information Technology</p>
+          <p class="edu-school">RMIT University</p>
+          <p class="edu-date">Graduated 2024</p>
+          <p class="edu-note">Focus: Networking, Systems &amp; Software Development</p>
+        </div>
+      </section>
+
+      <!-- Visitor Counter -->
+      <section class="card visitor-card" aria-labelledby="counter-heading">
+        <h2 id="counter-heading">Visitor Counter</h2>
+        <p class="counter-label">You are visitor</p>
+        <p class="counter-value" id="visitor-count">
+          <span class="counter-loading">loading&hellip;</span>
+        </p>
+        <p class="counter-note">Powered by AWS Lambda + DynamoDB</p>
+      </section>
+
+    </aside>
+
+    <!-- -------- RIGHT COLUMN -------- -->
+    <div class="content">
+
+      <!-- Summary -->
+      <section class="card" aria-labelledby="summary-heading">
+        <h2 id="summary-heading">About Me</h2>
+        <p>
+          IT graduate with a passion for cloud computing and infrastructure automation.
+          I built this resume as part of the
+          <a href="https://cloudresumechallenge.dev" target="_blank" rel="noopener">Cloud Resume Challenge</a>
+          &mdash; an end-to-end project covering static hosting on S3, global delivery via CloudFront,
+          a serverless visitor counter using Lambda and DynamoDB, and infrastructure defined with
+          AWS SAM. I'm actively pursuing the AWS Cloud Practitioner certification and looking to
+          start a career in cloud or IT operations.
+        </p>
+      </section>
+
+      <!-- Projects -->
+      <section class="card" aria-labelledby="projects-heading">
+        <h2 id="projects-heading">Projects</h2>
+
+        <article class="project-item">
+          <div class="project-header">
+            <h3>Cloud Resume Challenge</h3>
+            <span class="project-tag">AWS</span>
+          </div>
+          <p>
+            Full-stack serverless project hosted entirely on AWS. Resume served as a static website
+            from S3 via CloudFront with HTTPS. Visitor count stored in DynamoDB and incremented
+            by a Python Lambda function exposed through API Gateway. All infrastructure defined
+            as code using AWS SAM (CloudFormation).
+          </p>
+          <ul class="project-tech">
+            <li>S3</li><li>CloudFront</li><li>Lambda (Python)</li>
+            <li>API Gateway</li><li>DynamoDB</li><li>SAM / CloudFormation</li>
+          </ul>
+          <a class="project-link" href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+        </article>
+
+        <article class="project-item">
+          <div class="project-header">
+            <h3>Network Home Lab</h3>
+            <span class="project-tag">Networking</span>
+          </div>
+          <p>
+            Set up a virtualised home lab using VirtualBox to practise subnetting, VLAN configuration,
+            and basic firewall rules. Documented topology and troubleshooting steps in a GitHub
+            repository.
+          </p>
+          <ul class="project-tech">
+            <li>VirtualBox</li><li>Linux</li><li>Networking</li><li>Firewall</li>
+          </ul>
+        </article>
+
+        <article class="project-item">
+          <div class="project-header">
+            <h3>IT Inventory Management System</h3>
+            <span class="project-tag">Python / SQL</span>
+          </div>
+          <p>
+            University capstone project: a Python/SQLite application for tracking hardware and
+            software assets. Included a REST API layer built with Flask and a simple HTML
+            dashboard.
+          </p>
+          <ul class="project-tech">
+            <li>Python</li><li>SQLite</li><li>Flask</li><li>HTML/CSS</li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Experience -->
+      <section class="card" aria-labelledby="experience-heading">
+        <h2 id="experience-heading">Experience</h2>
+
+        <article class="job-item">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">IT Support Technician (Internship)</h3>
+              <p class="job-company">Local Business &mdash; Melbourne, VIC</p>
+            </div>
+            <span class="job-date">Jan 2024 &ndash; Jun 2024</span>
+          </div>
+          <ul class="job-duties">
+            <li>Provided Tier 1 &amp; 2 helpdesk support for 50+ end users across hardware, software, and network issues.</li>
+            <li>Assisted in setting up and maintaining Windows Server environments and Active Directory accounts.</li>
+            <li>Documented common issues and resolutions in a shared knowledge base, reducing repeat tickets by ~20%.</li>
+            <li>Supported network infrastructure upgrades including switch replacement and patch panel work.</li>
+          </ul>
+        </article>
+
+      </section>
+
+    </div>
+    <!-- end content -->
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Built with HTML, CSS &amp; AWS &mdash;
+        <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">Source on GitHub</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="counter.js"></script>
 </body>
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Apr 30, 2023 15:37:25").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get today's date and time
-      var now = new Date().getTime();
-        
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-        
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-      // Output the result in an element with id="demo"
-      document.getElementById("days").innerHTML = days
-      document.getElementById("hours").innerHTML = hours
-      document.getElementById("minutes").innerHTML = minutes
-      document.getElementById("seconds").innerHTML = seconds
-        
-      // If the count down is over, write some text 
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-    </script>
 </html>

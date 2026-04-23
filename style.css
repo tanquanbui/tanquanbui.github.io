@@ -1,41 +1,409 @@
-*{
-    margin: 0px;
-    box-sizing: border-box;
-    font-family: 'Titillium Web', sans-serif;
+/* ============================================================
+   CSS Custom Properties
+   ============================================================ */
+:root {
+  --color-bg:        #f0f2f5;
+  --color-surface:   #ffffff;
+  --color-primary:   #1a56a7;
+  --color-primary-dark: #153f82;
+  --color-accent:    #0ea5e9;
+  --color-text:      #1e2533;
+  --color-text-muted:#5a6478;
+  --color-border:    #dde1ea;
+  --color-tag-bg:    #e8f0fc;
+  --color-tag-text:  #1a56a7;
+  --color-tech-bg:   #f0f4ff;
+  --color-tech-text: #3b4a6b;
+  --color-header-bg: #0f2444;
+  --color-header-text: #ffffff;
+  --color-in-progress: #f59e0b;
+  --radius:          8px;
+  --shadow:          0 1px 3px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.06);
+  --font:            'Inter', system-ui, -apple-system, sans-serif;
+  --max-width:       1100px;
+  --sidebar-width:   300px;
+  --gap:             1.25rem;
 }
+
+/* ============================================================
+   Reset & Base
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
 body {
-    background-image: url('background.JPG');
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+  font-family: var(--font);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100vh;
 }
-.outerpage{
-    width: 100%;
-    height: 100vh;
-    display: grid;
-    place-content: center;
-    background-color: rgba(50, 50, 50, 0.5);
-    backdrop-filter: blur(10px);
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
 }
-.innerpage{
-    color: white;
-    padding: 15px 10px;
-    text-align: center;
+a:hover { text-decoration: underline; }
+
+ul { list-style: none; }
+
+/* ============================================================
+   Layout Utilities
+   ============================================================ */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
 }
-.timer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-header {
+  background: var(--color-header-bg);
+  color: var(--color-header-text);
+  padding: 2rem 0;
+  border-bottom: 3px solid var(--color-accent);
 }
-.innerpage h1 {
-    font-size:4em;
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
-.scroll {
-    margin-top: 5em;
+
+.header-name h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
-.buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+
+.tagline {
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #a8bbd6;
 }
-.button {
-    background-color: rgba(200, 200, 200, 0.8);
+
+.header-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.header-contact a,
+.header-contact .location {
+  font-size: 0.875rem;
+  color: #c5d6ec;
+}
+
+.header-contact a:hover { color: #ffffff; text-decoration: none; }
+
+.location { color: #8aa5c4; }
+
+/* ============================================================
+   Main Two-Column Layout
+   ============================================================ */
+.main-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  gap: var(--gap);
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+  align-items: start;
+}
+
+/* ============================================================
+   Cards
+   ============================================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+}
+
+.sidebar { display: flex; flex-direction: column; gap: var(--gap); }
+.content  { display: flex; flex-direction: column; gap: var(--gap); }
+
+.card h2 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-tag-bg);
+}
+
+/* ============================================================
+   Skills
+   ============================================================ */
+.skill-group { margin-bottom: 1rem; }
+.skill-group:last-child { margin-bottom: 0; }
+
+.skill-group h3 {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.4rem;
+}
+
+.skill-group ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.skill-group li {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  padding-left: 0.75rem;
+  position: relative;
+}
+.skill-group li::before {
+  content: '›';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ============================================================
+   Certifications
+   ============================================================ */
+.cert-list { display: flex; flex-direction: column; gap: 0.6rem; }
+
+.cert-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.cert-name {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.cert-status {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.1rem 0.5rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.cert-status.in-progress {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fbbf24;
+}
+
+/* ============================================================
+   Education
+   ============================================================ */
+.edu-degree  { font-size: 0.9rem; font-weight: 600; }
+.edu-school  { font-size: 0.85rem; color: var(--color-primary); margin-top: 0.2rem; }
+.edu-date    { font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.15rem; }
+.edu-note    { font-size: 0.78rem; color: var(--color-text-muted); margin-top: 0.35rem; font-style: italic; }
+
+/* ============================================================
+   Visitor Counter
+   ============================================================ */
+.visitor-card { text-align: center; }
+
+.counter-label {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.counter-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  line-height: 1.2;
+  min-height: 3rem;
+}
+
+.counter-loading {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.counter-note {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  margin-top: 0.5rem;
+}
+
+/* ============================================================
+   About / Summary
+   ============================================================ */
+.card > p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Projects
+   ============================================================ */
+.project-item {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+.project-item:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.project-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.project-item > p {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  margin-bottom: 0.75rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-tech li {
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--color-tech-bg);
+  color: var(--color-tech-text);
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius);
+  border: 1px solid #d8e0f4;
+}
+
+.project-link {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+/* ============================================================
+   Experience
+   ============================================================ */
+.job-item {
+  border-top: 1px solid var(--color-border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+.job-item:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
+
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.job-title   { font-size: 1rem; font-weight: 600; }
+.job-company { font-size: 0.82rem; color: var(--color-primary); margin-top: 0.15rem; }
+.job-date    { font-size: 0.78rem; color: var(--color-text-muted); white-space: nowrap; }
+
+.job-duties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.job-duties li {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.6;
+}
+.job-duties li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  background: var(--color-header-bg);
+  color: #8aa5c4;
+  text-align: center;
+  padding: 1.25rem 0;
+  font-size: 0.82rem;
+}
+
+.site-footer a { color: #c5d6ec; }
+.site-footer a:hover { color: #fff; text-decoration: none; }
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-contact {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .job-header { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .container { padding-inline: 1rem; }
 }
