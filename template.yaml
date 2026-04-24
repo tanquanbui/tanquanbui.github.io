@@ -1,0 +1,198 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Cloud Resume Challenge — Quan Bui
+  Deploys: S3 (static site) → CloudFront CDN → API Gateway → Lambda → DynamoDB
+
+# ──────────────────────────────────────────────
+# PARAMETERS  (pass at deploy time)
+# ──────────────────────────────────────────────
+Parameters:
+  ProjectName:
+    Type: String
+    Default: cloud-resume
+    Description: Short name used to prefix resource names
+
+# ──────────────────────────────────────────────
+# GLOBALS  (applies to all Lambda functions)
+# ──────────────────────────────────────────────
+Globals:
+  Function:
+    Runtime: python3.12
+    Timeout: 10
+    MemorySize: 128
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref VisitorTable
+
+# ──────────────────────────────────────────────
+# RESOURCES
+# ──────────────────────────────────────────────
+Resources:
+
+  # ====================================================
+  # STEP 2 — S3 bucket (private; CloudFront reads it)
+  # ====================================================
+  ResumeBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      # Unique name: cloud-resume-<your 12-digit AWS account ID>
+      BucketName: !Sub "${ProjectName}-${AWS::AccountId}"
+      # Block ALL public access — CloudFront OAC handles auth
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+
+  # ====================================================
+  # STEP 3 — CloudFront Origin Access Control (OAC)
+  #
+  # OAC is the modern replacement for OAI.  It signs every
+  # request from CloudFront to S3 with SigV4 so the bucket
+  # stays private — no public bucket policy needed.
+  # ====================================================
+  ResumeOAC:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${ProjectName}-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # Bucket policy — only CloudFront (via OAC) may call GetObject
+  ResumeBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ResumeBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontOAC
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${ResumeBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                # This ties the policy to OUR specific distribution only
+                AWS:SourceArn: !Sub
+                  - "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistId}"
+                  - DistId: !GetAtt ResumeDistribution.Id
+
+  # CloudFront distribution
+  ResumeDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: !Sub "Cloud Resume — ${ProjectName}"
+        Enabled: true
+        HttpVersion: http2and3
+        DefaultRootObject: index.html
+        # Serve index.html for any 404 so SPA-style deep links work
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+          - ErrorCode: 404
+            ResponseCode: 200
+            ResponsePagePath: /index.html
+        Origins:
+          - Id: S3Origin
+            # Use the regional domain (not the website endpoint)
+            DomainName: !GetAtt ResumeBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt ResumeOAC.Id
+            S3OriginConfig: {}   # Required (even though OAC replaces OAI)
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          # AWS managed policy: CachingOptimized (id is constant across all accounts)
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          AllowedMethods: [GET, HEAD]
+          CachedMethods:  [GET, HEAD]
+          Compress: true
+
+  # ====================================================
+  # STEP 4 — DynamoDB table (visitor counter)
+  #
+  # PAY_PER_REQUEST billing = free tier friendly; you only
+  # pay when requests arrive, no minimum capacity charge.
+  # ====================================================
+  VisitorTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${ProjectName}-visitors"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+
+  # ====================================================
+  # STEP 5 — Lambda function (Python — reads/writes counter)
+  # ====================================================
+  CounterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${ProjectName}-counter"
+      CodeUri: src/counter/
+      Handler: app.lambda_handler
+      # Least-privilege: only the one DynamoDB table
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - dynamodb:GetItem
+                - dynamodb:PutItem
+                - dynamodb:UpdateItem
+              Resource: !GetAtt VisitorTable.Arn
+      # ====================================================
+      # STEP 6 — API Gateway event (HTTP API, cheaper than REST)
+      # ====================================================
+      Events:
+        CounterApi:
+          Type: HttpApi
+          Properties:
+            Path: /counter
+            Method: POST
+            ApiId: !Ref ResumeApi
+
+  # HTTP API (API Gateway v2) — lower cost than REST API v1
+  ResumeApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      Name: !Sub "${ProjectName}-api"
+      CorsConfiguration:
+        AllowOrigins:
+          # Restrict to your CloudFront domain after first deploy.
+          # "*" is fine during development.
+          - "*"
+        AllowMethods:
+          - POST
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+
+# ──────────────────────────────────────────────
+# OUTPUTS  (printed after every deploy)
+# ──────────────────────────────────────────────
+Outputs:
+  CloudFrontURL:
+    Description: "Your resume URL (HTTPS)"
+    Value: !Sub "https://${ResumeDistribution.DomainName}"
+
+  BucketName:
+    Description: "S3 bucket — sync your files here"
+    Value: !Ref ResumeBucket
+
+  ApiEndpoint:
+    Description: "API Gateway endpoint — paste into counter.js"
+    Value: !Sub "https://${ResumeApi}.execute-api.${AWS::Region}.amazonaws.com/counter"
+
+  VisitorTableName:
+    Description: "DynamoDB table name"
+    Value: !Ref VisitorTable
