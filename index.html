@@ -3,209 +3,243 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quan Bui | Cloud & IT Graduate</title>
+  <title>Quan Bui | Cloud &amp; IT Graduate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <div class="header-name">
-        <h1>Quan Bui</h1>
-        <p class="tagline">IT Graduate &mdash; Cloud &amp; Infrastructure Focused</p>
+  <!-- Ambient background orbs (CSS animated) -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="container hero-inner">
+
+      <div class="avatar" aria-hidden="true">QB</div>
+
+      <div class="hero-text">
+        <div class="open-badge">
+          <span class="badge-dot"></span> Open to work
+        </div>
+        <h1 class="hero-name">Quan Bui</h1>
+        <p class="hero-title">IT Graduate &mdash; Cloud &amp; Infrastructure</p>
+        <nav class="hero-links" aria-label="Contact">
+          <a href="mailto:tanquanbui@email.com" class="hero-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            tanquanbui@email.com
+          </a>
+          <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener" class="hero-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/tanquanbui" target="_blank" rel="noopener" class="hero-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <span class="hero-link location">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Melbourne, VIC
+          </span>
+        </nav>
       </div>
-      <nav class="header-contact">
-        <a href="mailto:tanquanbui@email.com">tanquanbui@email.com</a>
-        <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/tanquanbui" target="_blank" rel="noopener">GitHub</a>
-        <span class="location">Melbourne, VIC, Australia</span>
-      </nav>
+
     </div>
   </header>
 
   <!-- ========== MAIN ========== -->
   <main class="container main-layout">
 
-    <!-- -------- LEFT COLUMN -------- -->
+    <!-- -------- SIDEBAR -------- -->
     <aside class="sidebar">
 
       <!-- Skills -->
-      <section class="card" aria-labelledby="skills-heading">
-        <h2 id="skills-heading">Skills</h2>
+      <section class="card" style="--i:1" aria-labelledby="skills-h">
+        <h2 class="card-heading" id="skills-h">Skills</h2>
 
         <div class="skill-group">
-          <h3>Cloud &amp; Infrastructure</h3>
-          <ul>
-            <li>Amazon Web Services (S3, CloudFront, Lambda, API Gateway, DynamoDB, CloudFormation, IAM)</li>
-            <li>Static website hosting &amp; CDN</li>
-            <li>Serverless architecture</li>
-            <li>Infrastructure as Code (CloudFormation / SAM)</li>
-          </ul>
+          <p class="skill-cat">Cloud &amp; Infrastructure</p>
+          <div class="tags">
+            <span class="tag tag-blue">S3</span>
+            <span class="tag tag-blue">CloudFront</span>
+            <span class="tag tag-blue">Lambda</span>
+            <span class="tag tag-blue">API Gateway</span>
+            <span class="tag tag-blue">DynamoDB</span>
+            <span class="tag tag-blue">CloudFormation</span>
+            <span class="tag tag-blue">IAM</span>
+            <span class="tag tag-blue">SAM</span>
+          </div>
         </div>
 
         <div class="skill-group">
-          <h3>Programming</h3>
-          <ul>
-            <li>Python (scripting, Lambda)</li>
-            <li>HTML &amp; CSS</li>
-            <li>JavaScript (Fetch API, DOM)</li>
-            <li>SQL (MySQL, SQLite)</li>
-          </ul>
+          <p class="skill-cat">Programming</p>
+          <div class="tags">
+            <span class="tag tag-purple">Python</span>
+            <span class="tag tag-purple">JavaScript</span>
+            <span class="tag tag-purple">HTML &amp; CSS</span>
+            <span class="tag tag-purple">SQL</span>
+            <span class="tag tag-purple">Bash</span>
+          </div>
         </div>
 
         <div class="skill-group">
-          <h3>Tools &amp; Practices</h3>
-          <ul>
-            <li>Git &amp; GitHub</li>
-            <li>Linux / Bash</li>
-            <li>REST APIs</li>
-            <li>CI/CD concepts</li>
-          </ul>
+          <p class="skill-cat">Tools</p>
+          <div class="tags">
+            <span class="tag tag-green">Git</span>
+            <span class="tag tag-green">GitHub</span>
+            <span class="tag tag-green">Linux</span>
+            <span class="tag tag-green">REST APIs</span>
+            <span class="tag tag-green">CI/CD</span>
+          </div>
         </div>
       </section>
 
       <!-- Certifications -->
-      <section class="card" aria-labelledby="certs-heading">
-        <h2 id="certs-heading">Certifications</h2>
-        <ul class="cert-list">
-          <li>
-            <span class="cert-name">AWS Certified Cloud Practitioner (CLF-C02)</span>
-            <span class="cert-status in-progress">In Progress</span>
-          </li>
-        </ul>
-      </section>
-
-      <!-- Education -->
-      <section class="card" aria-labelledby="edu-heading">
-        <h2 id="edu-heading">Education</h2>
-        <div class="edu-item">
-          <p class="edu-degree">Bachelor of Information Technology</p>
-          <p class="edu-school">RMIT University</p>
-          <p class="edu-date">Graduated 2024</p>
-          <p class="edu-note">Focus: Networking, Systems &amp; Software Development</p>
+      <section class="card" style="--i:2" aria-labelledby="certs-h">
+        <h2 class="card-heading" id="certs-h">Certifications</h2>
+        <div class="cert-row">
+          <div class="cert-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div>
+            <p class="cert-name">AWS Cloud Practitioner</p>
+            <p class="cert-sub">CLF-C02</p>
+            <span class="cert-pill">In Progress</span>
+          </div>
         </div>
       </section>
 
+      <!-- Education -->
+      <section class="card" style="--i:3" aria-labelledby="edu-h">
+        <h2 class="card-heading" id="edu-h">Education</h2>
+        <p class="edu-degree">B. Information Technology</p>
+        <p class="edu-school">RMIT University</p>
+        <p class="edu-meta">Graduated 2024</p>
+        <p class="edu-meta">Networking &amp; Software Development</p>
+      </section>
+
       <!-- Visitor Counter -->
-      <section class="card visitor-card" aria-labelledby="counter-heading">
-        <h2 id="counter-heading">Visitor Counter</h2>
-        <p class="counter-label">You are visitor</p>
-        <p class="counter-value" id="visitor-count">
-          <span class="counter-loading">loading&hellip;</span>
-        </p>
-        <p class="counter-note">Powered by AWS Lambda + DynamoDB</p>
+      <section class="card counter-card" style="--i:4" aria-labelledby="counter-h">
+        <h2 class="card-heading" id="counter-h">Live Visitors</h2>
+        <p class="counter-num" id="visitor-count">—</p>
+        <p class="counter-sub">AWS Lambda &rarr; DynamoDB</p>
       </section>
 
     </aside>
 
-    <!-- -------- RIGHT COLUMN -------- -->
+    <!-- -------- CONTENT -------- -->
     <div class="content">
 
-      <!-- Summary -->
-      <section class="card" aria-labelledby="summary-heading">
-        <h2 id="summary-heading">About Me</h2>
-        <p>
+      <!-- About -->
+      <section class="card" style="--i:1" aria-labelledby="about-h">
+        <h2 class="card-heading" id="about-h">About Me</h2>
+        <p class="body-text">
           IT graduate with a passion for cloud computing and infrastructure automation.
           I built this resume as part of the
           <a href="https://cloudresumechallenge.dev" target="_blank" rel="noopener">Cloud Resume Challenge</a>
-          &mdash; an end-to-end project covering static hosting on S3, global delivery via CloudFront,
-          a serverless visitor counter using Lambda and DynamoDB, and infrastructure defined with
-          AWS SAM. I'm actively pursuing the AWS Cloud Practitioner certification and looking to
-          start a career in cloud or IT operations.
+          — an end-to-end AWS project covering S3 static hosting, CloudFront CDN, a
+          serverless visitor counter via Lambda and DynamoDB, and all infrastructure
+          defined as code with AWS SAM. Currently pursuing the AWS Cloud Practitioner
+          certification and looking to start a career in cloud or IT operations.
         </p>
       </section>
 
       <!-- Projects -->
-      <section class="card" aria-labelledby="projects-heading">
-        <h2 id="projects-heading">Projects</h2>
+      <section class="card" style="--i:2" aria-labelledby="projects-h">
+        <h2 class="card-heading" id="projects-h">Projects</h2>
 
-        <article class="project-item">
+        <article class="project">
           <div class="project-header">
-            <h3>Cloud Resume Challenge</h3>
-            <span class="project-tag">AWS</span>
+            <h3 class="project-name">Cloud Resume Challenge</h3>
+            <span class="featured-pill">Featured</span>
           </div>
-          <p>
-            Full-stack serverless project hosted entirely on AWS. Resume served as a static website
-            from S3 via CloudFront with HTTPS. Visitor count stored in DynamoDB and incremented
-            by a Python Lambda function exposed through API Gateway. All infrastructure defined
-            as code using AWS SAM (CloudFormation).
+          <p class="body-text">
+            Full-stack serverless resume hosted entirely on AWS. Static files served from
+            S3 via CloudFront with HTTPS. Visitor count stored in DynamoDB, incremented
+            by a Python Lambda exposed through API Gateway. All infrastructure as code
+            using AWS SAM.
           </p>
-          <ul class="project-tech">
-            <li>S3</li><li>CloudFront</li><li>Lambda (Python)</li>
-            <li>API Gateway</li><li>DynamoDB</li><li>SAM / CloudFormation</li>
-          </ul>
-          <a class="project-link" href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+          <div class="tags" style="margin-top:.75rem">
+            <span class="tag tag-blue">S3</span>
+            <span class="tag tag-blue">CloudFront</span>
+            <span class="tag tag-blue">Lambda</span>
+            <span class="tag tag-blue">API Gateway</span>
+            <span class="tag tag-blue">DynamoDB</span>
+            <span class="tag tag-blue">SAM</span>
+          </div>
+          <a class="text-link" href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">View source &rarr;</a>
         </article>
 
-        <article class="project-item">
+        <article class="project">
           <div class="project-header">
-            <h3>Network Home Lab</h3>
-            <span class="project-tag">Networking</span>
+            <h3 class="project-name">Network Home Lab</h3>
           </div>
-          <p>
-            Set up a virtualised home lab using VirtualBox to practise subnetting, VLAN configuration,
-            and basic firewall rules. Documented topology and troubleshooting steps in a GitHub
-            repository.
+          <p class="body-text">
+            Virtualised home lab in VirtualBox practising subnetting, VLAN configuration,
+            and firewall rules. Documented topology and troubleshooting steps on GitHub.
           </p>
-          <ul class="project-tech">
-            <li>VirtualBox</li><li>Linux</li><li>Networking</li><li>Firewall</li>
-          </ul>
+          <div class="tags" style="margin-top:.75rem">
+            <span class="tag tag-green">VirtualBox</span>
+            <span class="tag tag-green">Linux</span>
+            <span class="tag tag-green">Networking</span>
+            <span class="tag tag-green">Firewall</span>
+          </div>
         </article>
 
-        <article class="project-item">
+        <article class="project">
           <div class="project-header">
-            <h3>IT Inventory Management System</h3>
-            <span class="project-tag">Python / SQL</span>
+            <h3 class="project-name">IT Inventory Management System</h3>
           </div>
-          <p>
-            University capstone project: a Python/SQLite application for tracking hardware and
-            software assets. Included a REST API layer built with Flask and a simple HTML
-            dashboard.
+          <p class="body-text">
+            University capstone: Python/SQLite app for tracking hardware and software
+            assets with a Flask REST API and HTML dashboard.
           </p>
-          <ul class="project-tech">
-            <li>Python</li><li>SQLite</li><li>Flask</li><li>HTML/CSS</li>
-          </ul>
+          <div class="tags" style="margin-top:.75rem">
+            <span class="tag tag-purple">Python</span>
+            <span class="tag tag-purple">SQLite</span>
+            <span class="tag tag-purple">Flask</span>
+            <span class="tag tag-purple">HTML/CSS</span>
+          </div>
         </article>
       </section>
 
       <!-- Experience -->
-      <section class="card" aria-labelledby="experience-heading">
-        <h2 id="experience-heading">Experience</h2>
+      <section class="card" style="--i:3" aria-labelledby="exp-h">
+        <h2 class="card-heading" id="exp-h">Experience</h2>
 
-        <article class="job-item">
-          <div class="job-header">
-            <div>
-              <h3 class="job-title">IT Support Technician (Internship)</h3>
-              <p class="job-company">Local Business &mdash; Melbourne, VIC</p>
+        <div class="timeline">
+          <div class="tl-dot"></div>
+          <div class="tl-body">
+            <div class="tl-header">
+              <div>
+                <h3 class="job-title">IT Support Technician <span class="job-type">Internship</span></h3>
+                <p class="job-company">Local Business &mdash; Melbourne, VIC</p>
+              </div>
+              <span class="job-date">Jan &ndash; Jun 2024</span>
             </div>
-            <span class="job-date">Jan 2024 &ndash; Jun 2024</span>
+            <ul class="duties">
+              <li>Tier 1 &amp; 2 helpdesk support for 50+ end users across hardware, software and network issues.</li>
+              <li>Maintained Windows Server environments and Active Directory user accounts.</li>
+              <li>Built a shared knowledge base that reduced repeat tickets by ~20%.</li>
+              <li>Supported network upgrades including switch replacement and patch panel work.</li>
+            </ul>
           </div>
-          <ul class="job-duties">
-            <li>Provided Tier 1 &amp; 2 helpdesk support for 50+ end users across hardware, software, and network issues.</li>
-            <li>Assisted in setting up and maintaining Windows Server environments and Active Directory accounts.</li>
-            <li>Documented common issues and resolutions in a shared knowledge base, reducing repeat tickets by ~20%.</li>
-            <li>Supported network infrastructure upgrades including switch replacement and patch panel work.</li>
-          </ul>
-        </article>
+        </div>
 
       </section>
 
     </div>
-    <!-- end content -->
-
   </main>
 
   <!-- ========== FOOTER ========== -->
   <footer class="site-footer">
     <div class="container">
-      <p>
-        Built with HTML, CSS &amp; AWS &mdash;
-        <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">Source on GitHub</a>
-      </p>
+      Built with HTML, CSS &amp; AWS &bull;
+      <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">Source on GitHub</a>
     </div>
   </footer>
 
