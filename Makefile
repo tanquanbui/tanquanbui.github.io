@@ -78,7 +78,12 @@ patch-counter:
 	  --query "Stacks[0].Outputs[?OutputKey=='ApiEndpoint'].OutputValue" \
 	  --output text))
 	@echo "→ Patching counter.js with: $(API_URL)"
-	@sed -i 's|https://YOUR_API_ID.*amazonaws.com.*|$(API_URL)";|' counter.js
+	@python3 -c "\
+import re, sys; \
+f = open('counter.js').read(); \
+out = re.sub(r'const API_URL = \".*\";', 'const API_URL = \"$(API_URL)\";', f); \
+open('counter.js', 'w').write(out); \
+print('counter.js updated.')"
 	@echo "→ Done. Run 'make sync' to re-upload."
 
 # ── Tear everything down (avoid ongoing charges) ─────────────
