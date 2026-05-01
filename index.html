@@ -3,80 +3,271 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Quan Bui | Cloud &amp; IT Graduate</title>
+  <title>Quan Bui | Cloud Resume</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Ambient background orbs (CSS animated) -->
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
+  <!-- ========== NAV ========== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">QB</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about"        class="nav-link" data-section="about">About</a></li>
+        <li><a href="#architecture" class="nav-link" data-section="architecture">Architecture</a></li>
+        <li><a href="#skills"       class="nav-link" data-section="skills">Skills</a></li>
+        <li><a href="#projects"     class="nav-link" data-section="projects">Projects</a></li>
+        <li><a href="#experience"   class="nav-link" data-section="experience">Experience</a></li>
+      </ul>
+      <a href="mailto:tanquanbui@email.com" class="nav-cta">Hire Me</a>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
   <!-- ========== HERO ========== -->
-  <header class="hero">
-    <div class="container hero-inner">
+  <section id="hero" class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
 
-      <div class="avatar" aria-hidden="true">QB</div>
-
-      <div class="hero-text">
-        <div class="open-badge">
-          <span class="badge-dot"></span> Open to work
-        </div>
-        <h1 class="hero-name">Quan Bui</h1>
-        <p class="hero-title">IT Graduate &mdash; Cloud &amp; Infrastructure</p>
-        <nav class="hero-links" aria-label="Contact">
-          <a href="mailto:tanquanbui@email.com" class="hero-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            tanquanbui@email.com
-          </a>
-          <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener" class="hero-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="https://github.com/tanquanbui" target="_blank" rel="noopener" class="hero-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-            GitHub
-          </a>
-          <span class="hero-link location">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-            Melbourne, VIC
-          </span>
-        </nav>
+    <div class="hero-content">
+      <div class="open-badge">
+        <span class="badge-dot"></span> Open to work
       </div>
 
+      <h1 class="hero-name">Quan Bui</h1>
+
+      <p class="hero-role">
+        <span id="typewriter" aria-live="polite"></span><span class="cursor" aria-hidden="true">|</span>
+      </p>
+
+      <p class="hero-desc">
+        IT Graduate building cloud infrastructure on AWS.
+        This resume is itself a deployed cloud project — hosted on S3, delivered via CloudFront,
+        with a serverless visitor counter powered by Lambda and DynamoDB.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#architecture" class="btn btn-ghost">How It's Built</a>
+      </div>
+
+      <div class="hero-meta">
+        <a href="mailto:tanquanbui@email.com" class="meta-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          tanquanbui@email.com
+        </a>
+        <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener" class="meta-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/tanquanbui" target="_blank" rel="noopener" class="meta-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <span class="meta-link no-link">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Melbourne, VIC
+        </span>
+      </div>
     </div>
-  </header>
 
-  <!-- ========== MAIN ========== -->
-  <main class="container main-layout">
+    <div class="scroll-hint" aria-hidden="true">
+      <div class="scroll-line"></div>
+      <span>scroll</span>
+    </div>
+  </section>
 
-    <!-- -------- SIDEBAR -------- -->
-    <aside class="sidebar">
+  <!-- ========== ABOUT ========== -->
+  <section id="about" class="section">
+    <div class="container">
+      <p class="section-label reveal">About</p>
+      <div class="about-grid">
 
-      <!-- Skills -->
-      <section class="card" style="--i:1" aria-labelledby="skills-h">
-        <h2 class="card-heading" id="skills-h">Skills</h2>
+        <div class="about-left">
+          <h2 class="section-title reveal">IT Graduate.<br/>Cloud Focused.</h2>
+          <div class="about-body reveal">
+            <p>
+              I built this resume as part of the
+              <a href="https://cloudresumechallenge.dev" target="_blank" rel="noopener">Cloud Resume Challenge</a>
+              — an end-to-end AWS project that goes far beyond a static webpage. Every piece of
+              infrastructure you're using right now was defined as code and deployed with SAM.
+            </p>
+            <p>
+              Currently pursuing the AWS Cloud Practitioner certification (CLF-C02) and looking
+              to start a career in cloud operations or infrastructure.
+            </p>
+          </div>
+          <div class="edu-card reveal">
+            <div class="edu-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div>
+              <strong>Bachelor of Information Technology</strong>
+              <span>RMIT University &mdash; Graduated 2024</span>
+              <span>Networking &amp; Software Development</span>
+            </div>
+          </div>
+        </div>
 
-        <div class="skill-group">
-          <p class="skill-cat">Cloud &amp; Infrastructure</p>
+        <div class="stats-grid reveal">
+          <div class="stat-card">
+            <span class="stat-num" data-target="7">0</span>
+            <span class="stat-label">AWS Services</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num" data-target="3">0</span>
+            <span class="stat-label">Projects Built</span>
+          </div>
+          <div class="stat-card highlight-card">
+            <span class="stat-num" id="visitor-count">—</span>
+            <span class="stat-label">Live Visitors</span>
+            <span class="stat-sub">Lambda → DynamoDB</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">CLF</span>
+            <span class="stat-label">Cert in Progress</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ARCHITECTURE ========== -->
+  <section id="architecture" class="section section-alt">
+    <div class="container">
+      <p class="section-label reveal">Under the Hood</p>
+      <h2 class="section-title reveal">Cloud Architecture</h2>
+      <p class="section-sub reveal">
+        This resume is a real AWS project. Here's what happens every time someone visits.
+      </p>
+
+      <div class="arch-wrap reveal">
+
+        <div class="arch-flow">
+
+          <!-- Row 1: Static site delivery -->
+          <div class="arch-row-label">Static site delivery</div>
+          <div class="arch-row">
+            <div class="arch-node" data-color="blue">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="arch-node-name">Browser</div>
+              <div class="arch-node-sub">You, right now</div>
+            </div>
+
+            <div class="arch-connector">
+              <div class="arch-line"></div>
+              <span class="arch-label">HTTPS request</span>
+            </div>
+
+            <div class="arch-node" data-color="orange">
+              <div class="arch-node-icon">⚡</div>
+              <div class="arch-node-name">CloudFront</div>
+              <div class="arch-node-sub">CDN · 400+ edge locations</div>
+            </div>
+
+            <div class="arch-connector">
+              <div class="arch-line"></div>
+              <span class="arch-label">OAC · SigV4</span>
+            </div>
+
+            <div class="arch-node" data-color="green">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div class="arch-node-name">S3 Bucket</div>
+              <div class="arch-node-sub">HTML · CSS · JS (private)</div>
+            </div>
+          </div>
+
+          <div class="arch-between">
+            <div class="arch-branch-line"></div>
+            <span>visitor counter fires simultaneously</span>
+            <div class="arch-branch-line"></div>
+          </div>
+
+          <!-- Row 2: API flow -->
+          <div class="arch-row-label">Serverless visitor counter</div>
+          <div class="arch-row">
+            <div class="arch-node" data-color="purple">
+              <div class="arch-node-icon">🔌</div>
+              <div class="arch-node-name">API Gateway</div>
+              <div class="arch-node-sub">HTTP API v2 · CORS</div>
+            </div>
+
+            <div class="arch-connector">
+              <div class="arch-line"></div>
+              <span class="arch-label">POST /counter</span>
+            </div>
+
+            <div class="arch-node" data-color="yellow">
+              <div class="arch-node-icon">λ</div>
+              <div class="arch-node-name">Lambda</div>
+              <div class="arch-node-sub">Python 3.12 · Serverless</div>
+            </div>
+
+            <div class="arch-connector">
+              <div class="arch-line"></div>
+              <span class="arch-label">UpdateItem</span>
+            </div>
+
+            <div class="arch-node" data-color="teal">
+              <div class="arch-node-icon">⬡</div>
+              <div class="arch-node-name">DynamoDB</div>
+              <div class="arch-node-sub">NoSQL · PAY_PER_REQUEST</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="arch-tags">
+          <span class="arch-tag">AWS SAM</span>
+          <span class="arch-tag">CloudFormation IaC</span>
+          <span class="arch-tag">Serverless</span>
+          <span class="arch-tag">HTTPS Only</span>
+          <span class="arch-tag">Free Tier</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS ========== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="section-label reveal">Skills</p>
+      <h2 class="section-title reveal">What I Work With</h2>
+      <div class="skills-grid">
+
+        <div class="skill-card reveal" style="--d:.05s">
+          <h3 class="skill-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Cloud &amp; Infrastructure
+          </h3>
           <div class="tags">
-            <span class="tag tag-blue">S3</span>
+            <span class="tag tag-blue">AWS S3</span>
             <span class="tag tag-blue">CloudFront</span>
             <span class="tag tag-blue">Lambda</span>
             <span class="tag tag-blue">API Gateway</span>
             <span class="tag tag-blue">DynamoDB</span>
             <span class="tag tag-blue">CloudFormation</span>
-            <span class="tag tag-blue">IAM</span>
             <span class="tag tag-blue">SAM</span>
+            <span class="tag tag-blue">IAM</span>
           </div>
         </div>
 
-        <div class="skill-group">
-          <p class="skill-cat">Programming</p>
+        <div class="skill-card reveal" style="--d:.1s">
+          <h3 class="skill-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Programming
+          </h3>
           <div class="tags">
             <span class="tag tag-purple">Python</span>
             <span class="tag tag-purple">JavaScript</span>
@@ -86,84 +277,61 @@
           </div>
         </div>
 
-        <div class="skill-group">
-          <p class="skill-cat">Tools</p>
+        <div class="skill-card reveal" style="--d:.15s">
+          <h3 class="skill-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            Tools &amp; Practices
+          </h3>
           <div class="tags">
-            <span class="tag tag-green">Git</span>
-            <span class="tag tag-green">GitHub</span>
+            <span class="tag tag-green">Git &amp; GitHub</span>
             <span class="tag tag-green">Linux</span>
             <span class="tag tag-green">REST APIs</span>
             <span class="tag tag-green">CI/CD</span>
+            <span class="tag tag-green">Serverless</span>
           </div>
         </div>
-      </section>
 
-      <!-- Certifications -->
-      <section class="card" style="--i:2" aria-labelledby="certs-h">
-        <h2 class="card-heading" id="certs-h">Certifications</h2>
-        <div class="cert-row">
-          <div class="cert-icon" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <div>
-            <p class="cert-name">AWS Cloud Practitioner</p>
-            <p class="cert-sub">CLF-C02</p>
-            <span class="cert-pill">In Progress</span>
+        <div class="skill-card reveal" style="--d:.2s">
+          <h3 class="skill-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            Certifications
+          </h3>
+          <div class="cert-row">
+            <div class="cert-badge-icon">☁</div>
+            <div class="cert-info">
+              <strong>AWS Cloud Practitioner</strong>
+              <span>CLF-C02</span>
+              <div class="progress-track">
+                <div class="progress-bar" style="--pct: 65%"></div>
+              </div>
+              <span class="progress-label">In Progress — ~65%</span>
+            </div>
           </div>
         </div>
-      </section>
 
-      <!-- Education -->
-      <section class="card" style="--i:3" aria-labelledby="edu-h">
-        <h2 class="card-heading" id="edu-h">Education</h2>
-        <p class="edu-degree">B. Information Technology</p>
-        <p class="edu-school">RMIT University</p>
-        <p class="edu-meta">Graduated 2024</p>
-        <p class="edu-meta">Networking &amp; Software Development</p>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <!-- Visitor Counter -->
-      <section class="card counter-card" style="--i:4" aria-labelledby="counter-h">
-        <h2 class="card-heading" id="counter-h">Live Visitors</h2>
-        <p class="counter-num" id="visitor-count">—</p>
-        <p class="counter-sub">AWS Lambda &rarr; DynamoDB</p>
-      </section>
+  <!-- ========== PROJECTS ========== -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <p class="section-label reveal">Projects</p>
+      <h2 class="section-title reveal">What I've Built</h2>
 
-    </aside>
+      <div class="projects-grid">
 
-    <!-- -------- CONTENT -------- -->
-    <div class="content">
-
-      <!-- About -->
-      <section class="card" style="--i:1" aria-labelledby="about-h">
-        <h2 class="card-heading" id="about-h">About Me</h2>
-        <p class="body-text">
-          IT graduate with a passion for cloud computing and infrastructure automation.
-          I built this resume as part of the
-          <a href="https://cloudresumechallenge.dev" target="_blank" rel="noopener">Cloud Resume Challenge</a>
-          — an end-to-end AWS project covering S3 static hosting, CloudFront CDN, a
-          serverless visitor counter via Lambda and DynamoDB, and all infrastructure
-          defined as code with AWS SAM. Currently pursuing the AWS Cloud Practitioner
-          certification and looking to start a career in cloud or IT operations.
-        </p>
-      </section>
-
-      <!-- Projects -->
-      <section class="card" style="--i:2" aria-labelledby="projects-h">
-        <h2 class="card-heading" id="projects-h">Projects</h2>
-
-        <article class="project">
-          <div class="project-header">
-            <h3 class="project-name">Cloud Resume Challenge</h3>
-            <span class="featured-pill">Featured</span>
+        <article class="project-card featured reveal" style="--d:.05s">
+          <div class="project-top">
+            <span class="project-cat">AWS · Featured</span>
+            <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener" class="project-gh-link">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              View Source
+            </a>
           </div>
-          <p class="body-text">
-            Full-stack serverless resume hosted entirely on AWS. Static files served from
-            S3 via CloudFront with HTTPS. Visitor count stored in DynamoDB, incremented
-            by a Python Lambda exposed through API Gateway. All infrastructure as code
-            using AWS SAM.
-          </p>
-          <div class="tags" style="margin-top:.75rem">
+          <h3>Cloud Resume Challenge</h3>
+          <p>Full-stack serverless resume on AWS. The site you're reading right now — built from scratch with S3, CloudFront, Lambda, API Gateway, DynamoDB, and deployed as infrastructure-as-code using AWS SAM.</p>
+          <div class="tags">
             <span class="tag tag-blue">S3</span>
             <span class="tag tag-blue">CloudFront</span>
             <span class="tag tag-blue">Lambda</span>
@@ -171,18 +339,15 @@
             <span class="tag tag-blue">DynamoDB</span>
             <span class="tag tag-blue">SAM</span>
           </div>
-          <a class="text-link" href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">View source &rarr;</a>
         </article>
 
-        <article class="project">
-          <div class="project-header">
-            <h3 class="project-name">Network Home Lab</h3>
+        <article class="project-card reveal" style="--d:.1s">
+          <div class="project-top">
+            <span class="project-cat">Networking</span>
           </div>
-          <p class="body-text">
-            Virtualised home lab in VirtualBox practising subnetting, VLAN configuration,
-            and firewall rules. Documented topology and troubleshooting steps on GitHub.
-          </p>
-          <div class="tags" style="margin-top:.75rem">
+          <h3>Network Home Lab</h3>
+          <p>Virtualised home lab in VirtualBox practising subnetting, VLAN configuration, and firewall rules. Documented topology and troubleshooting steps.</p>
+          <div class="tags">
             <span class="tag tag-green">VirtualBox</span>
             <span class="tag tag-green">Linux</span>
             <span class="tag tag-green">Networking</span>
@@ -190,38 +355,45 @@
           </div>
         </article>
 
-        <article class="project">
-          <div class="project-header">
-            <h3 class="project-name">IT Inventory Management System</h3>
+        <article class="project-card reveal" style="--d:.15s">
+          <div class="project-top">
+            <span class="project-cat">Python · SQL</span>
           </div>
-          <p class="body-text">
-            University capstone: Python/SQLite app for tracking hardware and software
-            assets with a Flask REST API and HTML dashboard.
-          </p>
-          <div class="tags" style="margin-top:.75rem">
+          <h3>IT Inventory System</h3>
+          <p>University capstone: Python/SQLite application for tracking hardware and software assets with a Flask REST API and HTML dashboard.</p>
+          <div class="tags">
             <span class="tag tag-purple">Python</span>
             <span class="tag tag-purple">SQLite</span>
             <span class="tag tag-purple">Flask</span>
             <span class="tag tag-purple">HTML/CSS</span>
           </div>
         </article>
-      </section>
 
-      <!-- Experience -->
-      <section class="card" style="--i:3" aria-labelledby="exp-h">
-        <h2 class="card-heading" id="exp-h">Experience</h2>
+      </div>
+    </div>
+  </section>
 
-        <div class="timeline">
-          <div class="tl-dot"></div>
+  <!-- ========== EXPERIENCE ========== -->
+  <section id="experience" class="section">
+    <div class="container">
+      <p class="section-label reveal">Experience</p>
+      <h2 class="section-title reveal">Work History</h2>
+
+      <div class="timeline reveal">
+        <div class="tl-item">
+          <div class="tl-marker">
+            <div class="tl-dot"></div>
+            <div class="tl-line"></div>
+          </div>
           <div class="tl-body">
             <div class="tl-header">
               <div>
-                <h3 class="job-title">IT Support Technician <span class="job-type">Internship</span></h3>
-                <p class="job-company">Local Business &mdash; Melbourne, VIC</p>
+                <h3 class="tl-title">IT Support Technician <span class="tl-badge">Internship</span></h3>
+                <p class="tl-company">Local Business &mdash; Melbourne, VIC</p>
               </div>
-              <span class="job-date">Jan &ndash; Jun 2024</span>
+              <span class="tl-date">Jan &ndash; Jun 2024</span>
             </div>
-            <ul class="duties">
+            <ul class="tl-duties">
               <li>Tier 1 &amp; 2 helpdesk support for 50+ end users across hardware, software and network issues.</li>
               <li>Maintained Windows Server environments and Active Directory user accounts.</li>
               <li>Built a shared knowledge base that reduced repeat tickets by ~20%.</li>
@@ -229,20 +401,26 @@
             </ul>
           </div>
         </div>
-
-      </section>
-
+      </div>
     </div>
-  </main>
+  </section>
 
   <!-- ========== FOOTER ========== -->
-  <footer class="site-footer">
-    <div class="container">
-      Built with HTML, CSS &amp; AWS &bull;
-      <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">Source on GitHub</a>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <p class="footer-name">Quan Bui</p>
+        <p class="footer-sub">Built with HTML, CSS, JavaScript &amp; AWS</p>
+      </div>
+      <nav class="footer-links">
+        <a href="https://github.com/tanquanbui/tanquanbui.github.io" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/tanquanbui" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:tanquanbui@email.com">Email</a>
+      </nav>
     </div>
   </footer>
 
   <script src="counter.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
