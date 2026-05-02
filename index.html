@@ -2,69 +2,107 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Tan Quan Bui">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap" rel="stylesheet">
-    <title>Coming Soon | How to learn vietnamese</title>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <title>Tan Quan Bui | Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="outerpage">
-        <div class="innerpage">
-            <h1 class="animate-character">Coming Soon</h1>
-            <h2>We are creating the perfect place for you to learn and improve your vietnamese skill</h2>
-            <h2>howtolearnvietnamese.com</h2>
-            <div class="timer">
-                <div class="days">
-                    <h1 id="days">19</h1>
-                    <h2>days</h2>
-                </div>
-                <div class="hours">
-                    <h1 id="hours">19</h1>
-                    <h2>hours</h2>
-                </div>
-                <div class="minute">
-                    <h1 id="minutes">19</h1>
-                    <h2>minutes</h2>
-                </div>
-                <div class="seconds">
-                    <h1 id="seconds">19</h1>
-                    <h2>seconds</h2>
-                </div>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="#home" class="nav-brand">TQB</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="animate-character">Tan Quan Bui</h1>
+            <p class="tagline">Software developer building useful things on the web.</p>
+            <div class="hero-actions">
+                <a href="#projects" class="button button-primary">View Projects</a>
+                <a href="#contact" class="button">Get in Touch</a>
             </div>
         </div>
-    </div>
-</body>
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Apr 30, 2023 15:37:25").getTime();
-    
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-    
-      // Get today's date and time
-      var now = new Date().getTime();
-        
-      // Find the distance between now and the count down date
-      var distance = countDownDate - now;
-        
-      // Time calculations for days, hours, minutes and seconds
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
-      // Output the result in an element with id="demo"
-      document.getElementById("days").innerHTML = days
-      document.getElementById("hours").innerHTML = hours
-      document.getElementById("minutes").innerHTML = minutes
-      document.getElementById("seconds").innerHTML = seconds
-        
-      // If the count down is over, write some text 
-      if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("demo").innerHTML = "EXPIRED";
-      }
-    }, 1000);
+    </section>
+
+    <main>
+        <section id="about" class="section">
+            <div class="container">
+                <h2>About</h2>
+                <p>
+                    Hi, I'm Quan. I enjoy designing and building software — from
+                    web apps and APIs to small tools that solve everyday problems.
+                    I care about clean code, thoughtful UX, and shipping work that
+                    actually gets used.
+                </p>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-alt">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <h3>How to Learn Vietnamese</h3>
+                        <p>An online resource for learners to practice and improve their Vietnamese.</p>
+                        <a href="https://howtolearnvietnamese.com" target="_blank" rel="noopener">Visit site →</a>
+                    </article>
+                    <article class="project-card">
+                        <h3>Project Two</h3>
+                        <p>Short description of a project you've built. Replace this with real content.</p>
+                        <a href="#" rel="noopener">Learn more →</a>
+                    </article>
+                    <article class="project-card">
+                        <h3>Project Three</h3>
+                        <p>Short description of a project you've built. Replace this with real content.</p>
+                        <a href="#" rel="noopener">Learn more →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Skills</h2>
+                <ul class="skills-list">
+                    <li>JavaScript / TypeScript</li>
+                    <li>Python</li>
+                    <li>HTML &amp; CSS</li>
+                    <li>React</li>
+                    <li>Node.js</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <h2>Contact</h2>
+                <p>Want to work together or just say hi? Reach out below.</p>
+                <ul class="contact-list">
+                    <li><a href="mailto:hello@example.com">Email</a></li>
+                    <li><a href="https://github.com/tanquanbui" target="_blank" rel="noopener">GitHub</a></li>
+                    <li><a href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <p>&copy; <span id="year"></span> Tan Quan Bui</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
     </script>
+</body>
 </html>
