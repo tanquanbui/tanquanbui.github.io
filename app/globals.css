@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #191919;
+  --foreground: #efedea;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(239, 237, 234, 0.6) 0%,
+      rgba(239, 237, 234, 1) 50%,
+      rgba(239, 237, 234, 0.6) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 6s linear infinite;
+  }
+
+  .glass {
+    background-color: rgba(25, 25, 25, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(239, 237, 234, 0.06);
+  }
+
+  .glass-card {
+    background-color: rgba(239, 237, 234, 0.03);
+    border: 1px solid rgba(239, 237, 234, 0.08);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(239, 237, 234, 0.25);
+    background-color: rgba(239, 237, 234, 0.05);
+  }
+}
+
+::selection {
+  background-color: rgba(239, 237, 234, 0.85);
+  color: #191919;
+}
