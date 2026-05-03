@@ -31,7 +31,7 @@ export default function Nav() {
       <nav className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className="font-display text-xl font-light tracking-[0.2em] text-ink hover:text-clay transition-colors duration-300"
+          className="font-sans text-base font-semibold tracking-widest text-ink hover:text-clay transition-colors duration-300"
         >
           TQB
         </Link>

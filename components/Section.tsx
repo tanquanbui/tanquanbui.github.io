@@ -24,7 +24,7 @@ export default function Section({ id, title, children, alt = false }: Props) {
         className="max-w-5xl mx-auto"
       >
         <div className="mb-16">
-          <h2 className="font-display font-light text-5xl text-ink">{title}</h2>
+          <h2 className="font-sans font-semibold text-4xl text-ink tracking-tight">{title}</h2>
           <div className="mt-4 w-10 h-px bg-clay" />
         </div>
         {children}

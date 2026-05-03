@@ -9,7 +9,6 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
       },
       colors: {
         paper: '#F9F7F4',

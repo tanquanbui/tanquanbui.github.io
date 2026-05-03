@@ -48,7 +48,7 @@ export default function Projects() {
                 0{i + 1}
               </span>
             </div>
-            <h3 className="font-display font-light text-2xl text-ink mb-4 leading-snug">
+            <h3 className="font-sans font-semibold text-xl text-ink mb-4 leading-snug">
               {project.title}
             </h3>
             <p className="font-sans font-light text-sm text-ash leading-relaxed mb-10 flex-1">

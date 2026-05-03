@@ -33,8 +33,8 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="font-display font-light leading-none tracking-tight text-ink"
-          style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)' }}
+          className="font-sans font-bold leading-none tracking-tight text-ink"
+          style={{ fontSize: 'clamp(3rem, 9vw, 7rem)' }}
         >
           Tan Quan Bui
         </motion.h1>
