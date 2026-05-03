@@ -12,21 +12,18 @@ const links = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(false);
   const { scrollY } = useScroll();
 
-  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 24));
+  useMotionValueEvent(scrollY, 'change', (v) => setVisible(v > 80));
 
   return (
     <motion.header
-      initial={{ opacity: 0, y: -16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-paper/90 backdrop-blur-md border-b border-linen'
-          : 'bg-transparent'
-      }`}
+      initial={false}
+      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -16 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 bg-paper/90 backdrop-blur-md border-b border-linen"
+      style={{ pointerEvents: visible ? 'auto' : 'none' }}
     >
       <nav className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
         <Link
