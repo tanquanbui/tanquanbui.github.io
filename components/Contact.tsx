@@ -8,32 +8,37 @@ const links = [
 
 export default function Contact() {
   return (
-    <Section id="contact" title="Contact" alt>
-      <div className="max-w-lg">
-        <p className="font-sans font-light text-base leading-8 text-ash mb-12">
-          Have a project in mind or just want to say hello? I&apos;d love to
-          hear from you.
+    <Section id="contact" title="Contact" alt index={4}>
+      {/* Big featured heading */}
+      <div className="mb-16">
+        <p
+          className="font-black leading-[0.85] tracking-tighter text-ink"
+          style={{ fontSize: 'clamp(3.5rem, 12vw, 11rem)' }}
+        >
+          Let&apos;s<br />Talk.
         </p>
-        <div className="flex flex-col">
-          {links.map(({ label, href, display }) => (
-            <div
-              key={label}
-              className="flex items-center gap-8 py-5 border-b border-linen"
+      </div>
+
+      {/* Contact links */}
+      <div className="flex flex-col max-w-lg">
+        {links.map(({ label, href, display }) => (
+          <div
+            key={label}
+            className="flex items-center gap-8 py-5 border-b border-linen"
+          >
+            <span className="text-[10px] tracking-[0.28em] uppercase font-sans text-ash/50 w-16 shrink-0">
+              {label}
+            </span>
+            <a
+              href={href}
+              target={href.startsWith('http') ? '_blank' : undefined}
+              rel="noopener noreferrer"
+              className="font-sans font-light text-sm text-ink hover:text-clay transition-colors duration-300"
             >
-              <span className="text-[10px] tracking-[0.28em] uppercase font-sans text-ash/60 w-16 shrink-0">
-                {label}
-              </span>
-              <a
-                href={href}
-                target={href.startsWith('http') ? '_blank' : undefined}
-                rel="noopener noreferrer"
-                className="font-sans font-light text-sm text-ink hover:text-clay transition-colors duration-300"
-              >
-                {display}
-              </a>
-            </div>
-          ))}
-        </div>
+              {display}
+            </a>
+          </div>
+        ))}
       </div>
     </Section>
   );

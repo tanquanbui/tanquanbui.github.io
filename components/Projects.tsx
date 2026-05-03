@@ -9,58 +9,74 @@ const projects = [
     description: 'An online resource for learners to practice and improve their Vietnamese.',
     href: 'https://howtolearnvietnamese.com',
     tag: 'Web',
+    year: '2024',
   },
   {
     title: 'Project Two',
     description: "Short description of a project you've built. Replace this with real content.",
     href: '#',
     tag: 'App',
+    year: '2024',
   },
   {
     title: 'Project Three',
     description: "Short description of a project you've built. Replace this with real content.",
     href: '#',
     tag: 'Tool',
+    year: '2023',
   },
 ];
 
 export default function Projects() {
   return (
-    <Section id="projects" title="Projects" alt>
-      <div className="flex flex-col">
+    <Section id="projects" title="Work" alt index={2}>
+      <div className="flex flex-col gap-0">
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.08 }}
-            className="group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 py-8 border-b border-linen"
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className="group"
           >
-            <span className="text-[11px] tracking-[0.2em] font-sans text-ash/50 w-6 shrink-0">
-              0{i + 1}
-            </span>
-            <h3 className="font-sans font-semibold text-xl text-ink flex-1 group-hover:text-clay transition-colors duration-300">
-              {project.title}
-            </h3>
-            <p className="font-sans font-light text-sm text-ash leading-relaxed sm:max-w-xs">
-              {project.description}
-            </p>
-            <span className="text-[10px] tracking-[0.25em] uppercase font-sans text-ash/60 w-10 shrink-0">
-              {project.tag}
-            </span>
-            {project.href !== '#' ? (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] tracking-[0.18em] uppercase font-sans text-ink border-b border-ink pb-px hover:text-clay hover:border-clay transition-colors duration-300 shrink-0"
-              >
-                Visit
-              </a>
-            ) : (
-              <span className="w-8 shrink-0" />
-            )}
+            <div className="flex items-start gap-6 py-10 border-b border-linen">
+              {/* Number */}
+              <span className="font-black text-[3.5rem] leading-none tracking-tighter text-ink/10 group-hover:text-clay/30 transition-colors duration-500 shrink-0 mt-1 select-none">
+                0{i + 1}
+              </span>
+
+              {/* Main content */}
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-baseline justify-between gap-4 mb-3">
+                  <h3
+                    className="font-black leading-none tracking-tighter text-ink group-hover:text-clay transition-colors duration-300"
+                    style={{ fontSize: 'clamp(1.6rem, 4vw, 3rem)' }}
+                  >
+                    {project.title}
+                  </h3>
+                  <div className="flex items-center gap-4 shrink-0">
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-ash/60">{project.year}</span>
+                    <span className="text-[10px] tracking-[0.25em] uppercase text-clay">{project.tag}</span>
+                  </div>
+                </div>
+                <div className="flex items-end justify-between gap-8">
+                  <p className="font-sans font-light text-sm text-ash leading-relaxed max-w-md">
+                    {project.description}
+                  </p>
+                  {project.href !== '#' && (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[11px] tracking-[0.2em] uppercase font-sans text-ink border-b border-ink pb-px hover:text-clay hover:border-clay transition-colors duration-300 shrink-0"
+                    >
+                      Visit →
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
           </motion.div>
         ))}
       </div>
