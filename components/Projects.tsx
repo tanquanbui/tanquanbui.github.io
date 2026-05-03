@@ -30,7 +30,7 @@ const projects = [
 export default function Projects() {
   return (
     <Section id="projects" title="Work" alt index={2}>
-      <div className="flex flex-col gap-0">
+      <div className="flex flex-col">
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
@@ -38,30 +38,29 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="group"
+            className="group py-8 sm:py-10 border-b border-linen"
           >
-            <div className="flex items-start gap-6 py-10 border-b border-linen">
-              {/* Number */}
-              <span className="font-black text-[3.5rem] leading-none tracking-tighter text-ink/10 group-hover:text-clay/30 transition-colors duration-500 shrink-0 mt-1 select-none">
+            {/* Top row: number + title + tags */}
+            <div className="flex items-start gap-4 sm:gap-6 mb-3">
+              <span className="font-bold text-2xl sm:text-[3.5rem] leading-none tracking-tighter text-ink/10 group-hover:text-clay/30 transition-colors duration-500 shrink-0 mt-1 select-none">
                 0{i + 1}
               </span>
-
-              {/* Main content */}
               <div className="flex-1 min-w-0">
-                <div className="flex flex-wrap items-baseline justify-between gap-4 mb-3">
+                <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
                   <h3
-                    className="font-black leading-none tracking-tighter text-ink group-hover:text-clay transition-colors duration-300"
-                    style={{ fontSize: 'clamp(1.6rem, 4vw, 3rem)' }}
+                    className="font-bold leading-tight tracking-tight text-ink group-hover:text-clay transition-colors duration-300"
+                    style={{ fontSize: 'clamp(1.3rem, 4vw, 2.8rem)' }}
                   >
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-4 shrink-0">
+                  <div className="flex items-center gap-3 shrink-0">
                     <span className="text-[10px] tracking-[0.25em] uppercase text-ash/60">{project.year}</span>
                     <span className="text-[10px] tracking-[0.25em] uppercase text-clay">{project.tag}</span>
                   </div>
                 </div>
-                <div className="flex items-end justify-between gap-8">
-                  <p className="font-sans font-light text-sm text-ash leading-relaxed max-w-md">
+                {/* Description + visit */}
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+                  <p className="font-light text-sm text-ash leading-relaxed max-w-md">
                     {project.description}
                   </p>
                   {project.href !== '#' && (
@@ -69,7 +68,7 @@ export default function Projects() {
                       href={project.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[11px] tracking-[0.2em] uppercase font-sans text-ink border-b border-ink pb-px hover:text-clay hover:border-clay transition-colors duration-300 shrink-0"
+                      className="text-[11px] tracking-[0.2em] uppercase text-ink border-b border-ink pb-px hover:text-clay hover:border-clay transition-colors duration-300 self-start sm:self-auto shrink-0"
                     >
                       Visit →
                     </a>

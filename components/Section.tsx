@@ -15,7 +15,7 @@ export default function Section({ id, title, children, alt = false, index }: Pro
   return (
     <section
       id={id}
-      className={`py-28 px-8 ${alt ? 'bg-sand' : ''}`}
+      className={`py-16 sm:py-28 px-5 sm:px-8 ${alt ? 'bg-sand' : ''}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 16 }}

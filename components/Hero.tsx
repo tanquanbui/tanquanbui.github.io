@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-8"
+      className="min-h-screen flex items-center justify-center px-5 sm:px-8"
     >
       <motion.h1
         initial={{ opacity: 0 }}
