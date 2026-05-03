@@ -2,82 +2,73 @@
 
 import { motion } from 'framer-motion';
 
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } },
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
-};
+const fade = (delay = 0) => ({
+  hidden: { opacity: 0, y: 16 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] } },
+});
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center px-8 text-center"
+      className="relative min-h-screen flex flex-col justify-between px-8 pt-28 pb-12"
     >
+      {/* Top metadata row */}
       <motion.div
-        variants={container}
+        variants={fade(0.1)}
         initial="hidden"
         animate="show"
-        className="flex flex-col items-center gap-7"
+        className="flex items-center justify-between border-b border-linen pb-5"
       >
-        <motion.p
-          variants={item}
-          className="text-[11px] tracking-[0.35em] uppercase font-sans text-ash"
+        <span className="text-[11px] tracking-[0.3em] uppercase font-sans text-ash">
+          Portfolio
+        </span>
+        <span className="text-[11px] tracking-[0.3em] uppercase font-sans text-ash">
+          {new Date().getFullYear()}
+        </span>
+      </motion.div>
+
+      {/* Big name */}
+      <motion.div
+        variants={fade(0.2)}
+        initial="hidden"
+        animate="show"
+        className="py-8"
+      >
+        <h1
+          className="font-sans font-black leading-[0.88] tracking-tighter text-ink select-none"
+          style={{ fontSize: 'clamp(4.5rem, 17.5vw, 17rem)' }}
         >
-          Software Developer
-        </motion.p>
+          Tan<br />
+          Quan<br />
+          Bui
+        </h1>
+      </motion.div>
 
-        <motion.h1
-          variants={item}
-          className="font-sans font-bold leading-none tracking-tight text-ink"
-          style={{ fontSize: 'clamp(3rem, 9vw, 7rem)' }}
-        >
-          Tan Quan Bui
-        </motion.h1>
-
-        <motion.div variants={item} className="w-10 h-px bg-clay" />
-
-        <motion.p
-          variants={item}
-          className="max-w-sm text-sm font-sans font-light text-ash leading-7 tracking-wide"
-        >
-          Building useful things on the web with care and intention.
-        </motion.p>
-
-        <motion.div variants={item} className="flex items-center gap-5 pt-2">
+      {/* Bottom row */}
+      <motion.div
+        variants={fade(0.4)}
+        initial="hidden"
+        animate="show"
+        className="flex flex-col sm:flex-row sm:items-end justify-between gap-8 border-t border-linen pt-6"
+      >
+        <p className="max-w-xs font-sans font-light text-sm text-ash leading-7">
+          Software developer building<br />useful things on the web.
+        </p>
+        <div className="flex items-center gap-5">
           <a
             href="#projects"
-            className="px-8 py-3 bg-ink text-paper text-[11px] tracking-[0.18em] uppercase font-sans hover:bg-clay transition-colors duration-300"
+            className="px-7 py-3 bg-ink text-paper text-[11px] tracking-[0.18em] uppercase font-sans hover:bg-clay transition-colors duration-300"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="px-8 py-3 border border-ink text-ink text-[11px] tracking-[0.18em] uppercase font-sans hover:border-clay hover:text-clay transition-colors duration-300"
+            className="px-7 py-3 border border-ink text-ink text-[11px] tracking-[0.18em] uppercase font-sans hover:border-clay hover:text-clay transition-colors duration-300"
           >
-            Get in Touch
+            Contact
           </a>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 1 }}
-        className="absolute bottom-12 flex flex-col items-center gap-3"
-      >
-        <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-ash/60">
-          Scroll
-        </span>
-        <motion.div
-          animate={{ scaleY: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-px h-8 bg-ash origin-top"
-        />
+        </div>
       </motion.div>
     </section>
   );
