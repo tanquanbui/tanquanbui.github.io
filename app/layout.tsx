@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Space_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-inter',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space',
   display: 'swap',
 });
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={spaceGrotesk.variable}>
       <body className="font-sans">{children}</body>
     </html>
   );

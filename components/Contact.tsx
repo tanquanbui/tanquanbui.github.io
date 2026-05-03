@@ -12,10 +12,11 @@ export default function Contact() {
       {/* Big featured heading */}
       <div className="mb-16">
         <p
-          className="font-black leading-[0.85] tracking-tighter text-ink"
+          className="leading-[0.85] tracking-tighter text-ink"
           style={{ fontSize: 'clamp(3.5rem, 12vw, 11rem)' }}
         >
-          Let&apos;s<br />Talk.
+          <span className="font-bold">Let&apos;s</span><br />
+          <span className="font-light italic">Talk.</span>
         </p>
       </div>
 

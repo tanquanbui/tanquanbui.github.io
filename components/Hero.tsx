@@ -12,12 +12,12 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="font-black leading-[0.82] tracking-tighter text-ink w-full"
+        className="leading-[0.82] tracking-tighter text-ink w-full"
         style={{ fontSize: 'clamp(4.5rem, 18.5vw, 18rem)' }}
       >
-        <span className="block text-left">TAN</span>
-        <span className="block text-center">QUAN</span>
-        <span className="block text-right">BUI</span>
+        <span className="block text-left font-bold">TAN</span>
+        <span className="block text-center font-light italic">QUAN</span>
+        <span className="block text-right font-bold">BUI</span>
       </motion.h1>
     </section>
   );

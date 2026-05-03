@@ -5,10 +5,13 @@ export default function About() {
     <Section id="about" title="About" index={1}>
       <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-16 items-start">
         {/* Bio */}
-        <p className="font-sans font-light text-base leading-9 text-ash max-w-xl">
-          Hi, I&apos;m Quan. I enjoy designing and building software — from web
-          apps and APIs to small tools that solve everyday problems. I care about
-          clean code, thoughtful UX, and shipping work that actually gets used.
+        <p className="font-light text-base leading-9 text-ash max-w-xl">
+          Hi, I&apos;m Quan. I enjoy{' '}
+          <span className="font-semibold text-ink">designing and building</span>{' '}
+          software — from web apps and APIs to small tools that solve everyday
+          problems. I care about{' '}
+          <span className="italic text-ink">clean code, thoughtful UX,</span>{' '}
+          and shipping work that actually gets used.
         </p>
 
         {/* Bold side stats */}
