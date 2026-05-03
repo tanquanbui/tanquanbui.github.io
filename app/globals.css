@@ -7,14 +7,14 @@ html {
 }
 
 body {
-  background-color: #18120D;
-  color: #EDE8E0;
+  background-color: #000000;
+  color: #FFFFFF;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
 }
 
 ::selection {
-  background-color: #EDE8E0;
-  color: #18120D;
+  background-color: #FFFFFF;
+  color: #000000;
 }
