@@ -13,7 +13,7 @@ const config: Config = {
       colors: {
         paper: '#000000',
         ink: '#FFFFFF',
-        clay: '#FFFFFF',
+        clay: '#C8FF00',
         ash: '#666666',
         linen: '#1C1C1C',
         parchment: '#0A0A0A',
