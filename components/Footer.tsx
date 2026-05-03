@@ -1,7 +1,14 @@
 export default function Footer() {
   return (
-    <footer className="relative z-10 py-10 px-6 text-center text-sm opacity-60 border-t border-[#efedea]/10">
-      <p>&copy; {new Date().getFullYear()} Tan Quan Bui</p>
+    <footer className="py-12 px-8 border-t border-linen">
+      <div className="max-w-6xl mx-auto flex items-center justify-between">
+        <span className="font-display font-light text-lg tracking-[0.2em] text-ash/60">
+          TQB
+        </span>
+        <span className="text-[10px] tracking-[0.2em] uppercase font-sans text-ash/50">
+          © {new Date().getFullYear()} Tan Quan Bui
+        </span>
+      </div>
     </footer>
   );
 }

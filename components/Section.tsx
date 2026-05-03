@@ -14,16 +14,19 @@ export default function Section({ id, title, children, alt = false }: Props) {
   return (
     <section
       id={id}
-      className={`py-24 px-6 ${alt ? 'bg-[#efedea]/[0.02]' : ''}`}
+      className={`py-32 px-8 ${alt ? 'bg-sand' : ''}`}
     >
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="max-w-5xl mx-auto"
       >
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8">{title}</h2>
+        <div className="mb-16">
+          <h2 className="font-display font-light text-5xl text-ink">{title}</h2>
+          <div className="mt-4 w-10 h-px bg-clay" />
+        </div>
         {children}
       </motion.div>
     </section>

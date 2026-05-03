@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import Link from 'next/link';
+import { useState } from 'react';
 
 const links = [
   { href: '#about', label: 'About' },
@@ -10,26 +12,38 @@ const links = [
 ];
 
 export default function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, 'change', (v) => setScrolled(v > 24));
+
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="fixed top-0 left-0 right-0 z-50 glass"
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? 'bg-paper/90 backdrop-blur-md border-b border-linen'
+          : 'bg-transparent'
+      }`}
     >
-      <nav className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#home" className="font-bold tracking-widest text-lg">
+      <nav className="max-w-6xl mx-auto px-8 h-16 flex items-center justify-between">
+        <Link
+          href="/"
+          className="font-display text-xl font-light tracking-[0.2em] text-ink hover:text-clay transition-colors duration-300"
+        >
           TQB
-        </a>
-        <ul className="flex gap-6 sm:gap-8 text-sm sm:text-base">
+        </Link>
+        <ul className="flex items-center gap-10">
           {links.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
-                className="opacity-80 hover:opacity-100 transition-opacity"
+                className="text-[11px] tracking-[0.18em] uppercase font-sans text-ash hover:text-ink transition-colors duration-300"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

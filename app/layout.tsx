@@ -1,11 +1,19 @@
 import type { Metadata } from 'next';
-import { Titillium_Web } from 'next/font/google';
+import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
 
-const titillium = Titillium_Web({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['200', '400', '600', '700'],
-  variable: '--font-titillium',
+  weight: ['300', '400', '500', '600'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['300', '400', '500'],
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -20,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={titillium.variable}>
+    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
       <body className="font-sans">{children}</body>
     </html>
   );

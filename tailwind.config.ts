@@ -8,20 +8,25 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-titillium)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-cormorant)', 'Georgia', 'serif'],
+      },
+      colors: {
+        paper: '#F9F7F4',
+        ink: '#1A1815',
+        clay: '#7A6A58',
+        ash: '#8A8078',
+        linen: '#E2DDD6',
+        parchment: '#F2EEE8',
+        sand: '#EDE9E2',
       },
       animation: {
-        'gradient': 'gradient 8s linear infinite',
-        'fade-in': 'fadeIn 1s ease-in-out',
+        'fade-in': 'fadeIn 0.8s ease forwards',
       },
       keyframes: {
-        gradient: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        },
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          from: { opacity: '0', transform: 'translateY(16px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

@@ -3,58 +3,61 @@
 import { motion } from 'framer-motion';
 
 const container = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
-  },
+  hidden: {},
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.1 } },
 };
 
 const item = {
-  hidden: { y: 30, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center px-6 pt-24 pb-12"
+      className="relative min-h-screen flex flex-col items-center justify-center px-8 text-center"
     >
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="text-center max-w-3xl"
+        className="flex flex-col items-center gap-7"
       >
         <motion.p
           variants={item}
-          className="text-sm uppercase tracking-[0.3em] opacity-70 mb-6"
+          className="text-[11px] tracking-[0.35em] uppercase font-sans text-ash"
         >
-          Hello, I'm
+          Software Developer
         </motion.p>
+
         <motion.h1
           variants={item}
-          className="text-5xl sm:text-7xl md:text-8xl font-bold mb-6 text-shimmer leading-tight"
+          className="font-display font-light leading-none tracking-tight text-ink"
+          style={{ fontSize: 'clamp(3.5rem, 10vw, 8rem)' }}
         >
           Tan Quan Bui
         </motion.h1>
+
+        <motion.div variants={item} className="w-10 h-px bg-clay" />
+
         <motion.p
           variants={item}
-          className="text-lg sm:text-xl opacity-90 mb-10 max-w-xl mx-auto"
+          className="max-w-sm text-sm font-sans font-light text-ash leading-7 tracking-wide"
         >
-          Software developer building useful things on the web.
+          Building useful things on the web with care and intention.
         </motion.p>
-        <motion.div variants={item} className="flex gap-4 justify-center flex-wrap">
+
+        <motion.div variants={item} className="flex items-center gap-5 pt-2">
           <a
             href="#projects"
-            className="px-6 py-3 rounded-md bg-[#efedea] text-[#191919] font-semibold hover:bg-[#efedea]/90 transition"
+            className="px-8 py-3 bg-ink text-paper text-[11px] tracking-[0.18em] uppercase font-sans hover:bg-clay transition-colors duration-300"
           >
             View Projects
           </a>
           <a
             href="#contact"
-            className="px-6 py-3 rounded-md border border-[#efedea]/30 hover:bg-[#efedea]/10 hover:border-[#efedea]/70 transition"
+            className="px-8 py-3 border border-ink text-ink text-[11px] tracking-[0.18em] uppercase font-sans hover:border-clay hover:text-clay transition-colors duration-300"
           >
             Get in Touch
           </a>
@@ -64,16 +67,17 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        transition={{ delay: 1.8, duration: 1 }}
+        className="absolute bottom-12 flex flex-col items-center gap-3"
       >
+        <span className="text-[10px] tracking-[0.3em] uppercase font-sans text-ash/60">
+          Scroll
+        </span>
         <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-6 h-10 border-2 border-[#efedea]/30 rounded-full flex justify-center pt-2"
-        >
-          <div className="w-1 h-2 bg-[#efedea]/50 rounded-full" />
-        </motion.div>
+          animate={{ scaleY: [1, 1.4, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-px h-8 bg-ash origin-top"
+        />
       </motion.div>
     </section>
   );
