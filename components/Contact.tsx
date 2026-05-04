@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Section from './Section';
+import { useLang } from '@/lib/lang';
 
 const links = [
   { label: 'Email', href: 'mailto:hello@example.com', display: 'hello@example.com' },
@@ -10,8 +11,11 @@ const links = [
 ];
 
 export default function Contact() {
+  const { t } = useLang();
+  const { title, lets, talk } = t.contact;
+
   return (
-    <Section id="contact" title="Contact" alt index={4}>
+    <Section id="contact" title={title} alt index={4}>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 lg:gap-32 items-end">
 
         {/* Big heading — left */}
@@ -24,8 +28,8 @@ export default function Contact() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
         >
-          <span className="block font-bold">Let&apos;s</span>
-          <span className="block font-light italic text-clay">Talk.</span>
+          <span className="block font-bold">{lets}</span>
+          <span className="block font-serif font-light italic text-clay">{talk}</span>
         </motion.p>
 
         {/* Links — right, bottom-aligned */}

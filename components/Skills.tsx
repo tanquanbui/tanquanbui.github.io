@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Section from './Section';
+import { useLang } from '@/lib/lang';
 
 const skills = [
   'JavaScript',
@@ -16,8 +17,9 @@ const skills = [
 ];
 
 export default function Skills() {
+  const { t } = useLang();
   return (
-    <Section id="skills" title="Skills" index={3}>
+    <Section id="skills" title={t.skills.title} index={3}>
       <div className="flex flex-col">
         {skills.map((skill, i) => (
           <motion.div

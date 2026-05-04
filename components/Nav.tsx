@@ -3,17 +3,20 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
-
-const links = [
-  { href: '#about', label: 'About' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
-];
+import { useLang } from '@/lib/lang';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const { t } = useLang();
+
+  const links = [
+    { href: '#about', label: t.nav[0] },
+    { href: '#timeline', label: t.timeline.title },
+    { href: '#projects', label: t.nav[1] },
+    { href: '#skills', label: t.nav[2] },
+    { href: '#contact', label: t.nav[3] },
+  ];
 
   return (
     <>
