@@ -11,7 +11,7 @@ export const translations = {
     nav: ['About', 'Work', 'Skills', 'Contact'],
     about: {
       title: 'About',
-      bio: `I enjoy designing and building software — from web apps and APIs to small tools that solve everyday problems. I care about clean code, thoughtful UX, and shipping work that actually gets used.`,
+      bio: `I make things on the web that feel alive — digital experiences where code and craft blur into something you can feel. Based in Vietnam, working at the intersection of design, motion, and software.`,
       openToWork: ['Open', 'to work'],
       webDev: ['Web', 'Dev'],
       status: 'Status',
@@ -36,7 +36,7 @@ export const translations = {
     nav: ['Về tôi', 'Dự án', 'Kỹ năng', 'Liên hệ'],
     about: {
       title: 'Về tôi',
-      bio: 'Tôi thích thiết kế và xây dựng phần mềm — từ ứng dụng web và API đến những công cụ nhỏ giải quyết vấn đề hàng ngày. Tôi coi trọng code sạch, UX chu đáo và sản phẩm thực sự được sử dụng.',
+      bio: 'Tôi tạo ra những thứ trên web mang lại cảm giác sống động — những trải nghiệm kỹ thuật số nơi code và nghệ thuật hòa quyện thành điều bạn có thể cảm nhận. Làm việc tại điểm giao thoa giữa thiết kế, chuyển động và phần mềm.',
       openToWork: ['Sẵn sàng', 'làm việc'],
       webDev: ['Lập trình', 'Web'],
       status: 'Trạng thái',

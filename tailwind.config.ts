@@ -9,6 +9,7 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-space)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
       },
       colors: {
         paper: '#FAF8F5',

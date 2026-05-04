@@ -29,7 +29,7 @@ export default function Contact() {
           whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
         >
           <span className="block font-bold">{lets}</span>
-          <span className="block font-light italic text-clay">{talk}</span>
+          <span className="block font-serif font-light italic text-clay">{talk}</span>
         </motion.p>
 
         {/* Links — right, bottom-aligned */}
