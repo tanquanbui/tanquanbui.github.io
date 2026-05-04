@@ -15,38 +15,34 @@ export default function Section({ id, title, children, alt = false, index }: Pro
   return (
     <section
       id={id}
-      className={`py-16 sm:py-28 px-5 sm:px-8 ${alt ? 'bg-sand' : ''}`}
-      style={{ perspective: '1200px' }}
+      className={`min-h-screen flex flex-col px-5 sm:px-12 pt-20 pb-16 ${alt ? 'bg-sand/60' : ''}`}
     >
+      {/* Section label — small, top left */}
       <motion.div
-        initial={{ opacity: 0, y: 80, rotateX: 10, scale: 0.97 }}
-        whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ type: 'spring', stiffness: 80, damping: 20 }}
-        style={{ transformOrigin: 'center bottom' }}
-        className="max-w-5xl mx-auto"
+        initial={{ opacity: 0, y: -12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="flex items-center gap-4 mb-auto pb-16"
       >
-        <div className="relative mb-16 overflow-hidden">
-          {index !== undefined && (
-            <span
-              className="absolute -top-6 right-0 font-bold leading-none text-ink/[0.04] select-none pointer-events-none"
-              style={{ fontSize: 'clamp(6rem, 22vw, 20rem)' }}
-            >
-              {String(index).padStart(2, '0')}
-            </span>
-          )}
-          <div className="relative flex items-baseline pb-6 border-b border-linen">
-            <motion.h2
-              className="font-bold text-3xl text-ink tracking-tight"
-              initial={{ x: -30, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20, delay: 0.1 }}
-            >
-              {title}
-            </motion.h2>
-          </div>
-        </div>
+        {index !== undefined && (
+          <span className="text-[10px] tracking-[0.3em] uppercase text-ash/40">
+            {String(index).padStart(2, '0')}
+          </span>
+        )}
+        <span className="text-[10px] tracking-[0.3em] uppercase text-ash/40">—</span>
+        <h2 className="text-[10px] tracking-[0.3em] uppercase text-ash/40">{title}</h2>
+      </motion.div>
+
+      {/* Content pushed to bottom — negative space at top */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        style={{ willChange: 'transform' }}
+        className="max-w-6xl w-full mx-auto mt-auto"
+      >
         {children}
       </motion.div>
     </section>

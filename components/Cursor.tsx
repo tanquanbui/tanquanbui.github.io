@@ -43,7 +43,7 @@ export default function Cursor() {
   return (
     <motion.div
       className="fixed top-0 left-0 z-[9999] pointer-events-none mix-blend-difference"
-      style={{ x: springX, y: springY, translateX: '-50%', translateY: '-50%' }}
+      style={{ x: springX, y: springY, translateX: '-50%', translateY: '-50%', willChange: 'transform' }}
     >
       <motion.div
         animate={{ scale: hovered ? 4 : 1, opacity: 1 }}

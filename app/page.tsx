@@ -1,6 +1,8 @@
 import Background from '@/components/Background';
 import Cursor from '@/components/Cursor';
 import SmoothScroll from '@/components/SmoothScroll';
+import ScrollProgress from '@/components/ScrollProgress';
+import Intro from '@/components/Intro';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import Marquee from '@/components/Marquee';
@@ -15,6 +17,8 @@ export default function Home() {
     <>
       <SmoothScroll />
       <Cursor />
+      <ScrollProgress />
+      <Intro />
       <Background />
       <Nav />
       <main className="relative z-10">
