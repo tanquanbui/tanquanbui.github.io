@@ -5,7 +5,6 @@ import ScrollProgress from '@/components/ScrollProgress';
 import Intro from '@/components/Intro';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
-import Marquee from '@/components/Marquee';
 import About from '@/components/About';
 import Timeline from '@/components/Timeline';
 import Projects from '@/components/Projects';
@@ -29,7 +28,6 @@ export default function Home() {
       <LangToggle />
       <main className="relative z-10">
         <Hero />
-        <Marquee />
         <About />
         <Timeline />
         <Projects />
