@@ -63,9 +63,9 @@ export default function Hero() {
         {...fadeUp(1.2)}
         className="absolute top-7 left-5 sm:left-10 flex items-center gap-3"
       >
-        <span className="text-[9px] tracking-[0.38em] uppercase text-ink/35">QB</span>
+        <span className="text-[11px] tracking-[0.38em] uppercase text-ink/35">QB</span>
         <span className="w-6 h-px bg-ink/15" />
-        <span className="text-[9px] tracking-[0.25em] uppercase text-ash/40">Creative Developer</span>
+        <span className="text-[11px] tracking-[0.25em] uppercase text-ash/40">Creative Developer</span>
       </motion.div>
 
       {/* ── Top-right: location ── */}
@@ -73,7 +73,7 @@ export default function Hero() {
         {...fadeUp(1.35)}
         className="absolute top-7 right-5 sm:right-10"
       >
-        <span className="text-[9px] tracking-[0.25em] uppercase text-ash/35">
+        <span className="text-[11px] tracking-[0.25em] uppercase text-ash/35">
           Hồ Chí Minh City
         </span>
       </motion.div>
@@ -99,7 +99,7 @@ export default function Hero() {
         {...fadeUp(1.5)}
         className="absolute bottom-7 left-5 sm:left-10 flex flex-col gap-1.5"
       >
-        <span className="text-[9px] tracking-[0.28em] uppercase text-ash/50">
+        <span className="text-[11px] tracking-[0.28em] uppercase text-ash/50">
           {t.tagline}
         </span>
         <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export default function Hero() {
             transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
             className="w-[5px] h-[5px] rounded-full bg-clay shrink-0"
           />
-          <span className="text-[9px] tracking-[0.28em] uppercase text-ash/40">
+          <span className="text-[11px] tracking-[0.28em] uppercase text-ash/40">
             {t.available}
           </span>
         </div>
@@ -119,7 +119,7 @@ export default function Hero() {
         {...fadeUp(1.8)}
         className="absolute bottom-7 right-5 sm:right-10 flex flex-col items-center gap-2"
       >
-        <span className="text-[8px] tracking-[0.3em] uppercase text-ash/30 [writing-mode:vertical-rl]">
+        <span className="text-[10px] tracking-[0.3em] uppercase text-ash/30 [writing-mode:vertical-rl]">
           Scroll
         </span>
         <motion.div

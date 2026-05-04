@@ -26,12 +26,12 @@ export default function Section({ id, title, children, alt = false, index }: Pro
         className="flex items-center gap-4 mb-auto pb-16"
       >
         {index !== undefined && (
-          <span className="text-[10px] tracking-[0.3em] uppercase text-ash/40">
+          <span className="text-xs tracking-[0.25em] uppercase text-ash/50">
             {String(index).padStart(2, '0')}
           </span>
         )}
-        <span className="text-[10px] tracking-[0.3em] uppercase text-ash/40">—</span>
-        <h2 className="text-[10px] tracking-[0.3em] uppercase text-ash/40">{title}</h2>
+        <span className="text-xs tracking-[0.25em] uppercase text-ash/40">—</span>
+        <h2 className="text-xs tracking-[0.25em] uppercase text-ash/50 font-medium">{title}</h2>
       </motion.div>
 
       {/* Content pushed to bottom — negative space at top */}
