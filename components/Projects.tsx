@@ -50,6 +50,8 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileHover={{ x: 6, transition: { type: 'spring', stiffness: 500, damping: 20 } }}
+              whileTap={{ scale: 0.99 }}
               className="group w-full text-left py-8 sm:py-10 border-b border-linen cursor-pointer"
             >
               <div className="flex items-start gap-4 sm:gap-6">

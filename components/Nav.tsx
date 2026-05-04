@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -12,94 +12,62 @@ const links = [
 ];
 
 export default function Nav() {
-  const [visible, setVisible] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  useMotionValueEvent(scrollY, 'change', (v) => setVisible(v > 80));
-
-  const closeMenu = () => setMenuOpen(false);
+  const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
 
   return (
     <>
-      <motion.header
-        initial={false}
-        animate={{ opacity: visible || menuOpen ? 1 : 0, y: visible || menuOpen ? 0 : -16 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-0 left-0 right-0 z-50 bg-paper/95 backdrop-blur-md border-b border-linen"
-        style={{ pointerEvents: visible || menuOpen ? 'auto' : 'none' }}
+      {/* Three-dot trigger — fixed to right side */}
+      <motion.button
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Menu"
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-[5px] p-3 group"
       >
-        <nav className="max-w-6xl mx-auto px-5 sm:px-8 h-14 sm:h-16 flex items-center justify-between">
-          <Link
-            href="/"
-            onClick={closeMenu}
-            className="font-semibold tracking-widest text-sm text-ink hover:text-clay transition-colors duration-300"
-          >
-            TQB
-          </Link>
+        {[0, 1, 2].map((i) => (
+          <motion.span
+            key={i}
+            animate={open ? { scale: 1.4, backgroundColor: '#A896D0' } : { scale: 1, backgroundColor: '#9A9090' }}
+            transition={{ delay: i * 0.05, duration: 0.25 }}
+            className="block w-[5px] h-[5px] rounded-full"
+          />
+        ))}
+      </motion.button>
 
-          {/* Desktop links */}
-          <ul className="hidden sm:flex items-center gap-10">
-            {links.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-[11px] tracking-[0.18em] uppercase text-ash hover:text-ink transition-colors duration-300"
-                >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile hamburger */}
-          <button
-            className="sm:hidden flex flex-col gap-[5px] p-2"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="block w-5 h-px bg-ink"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              className="block w-5 h-px bg-ink"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="block w-5 h-px bg-ink"
-            />
-          </button>
-        </nav>
-      </motion.header>
-
-      {/* Mobile full-screen menu */}
+      {/* Full-screen menu */}
       <AnimatePresence>
-        {menuOpen && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, y: -24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -24 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-paper flex flex-col justify-center px-8 sm:hidden"
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-40 bg-paper/95 backdrop-blur-md flex flex-col justify-center px-12 sm:px-20"
           >
-            <ul className="flex flex-col gap-2">
+            {/* Close */}
+            <button
+              onClick={close}
+              className="absolute top-8 right-8 text-[11px] tracking-[0.3em] uppercase text-ash hover:text-ink transition-colors"
+            >
+              Close ✕
+            </button>
+
+            <ul className="flex flex-col gap-3">
               {links.map((link, i) => (
                 <motion.li
                   key={link.href}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.07, duration: 0.4 }}
+                  exit={{ opacity: 0, x: 30 }}
+                  transition={{ delay: i * 0.08, duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <Link
                     href={link.href}
-                    onClick={closeMenu}
+                    onClick={close}
                     className="block font-bold tracking-tighter text-ink hover:text-clay transition-colors duration-300"
-                    style={{ fontSize: 'clamp(3rem, 14vw, 5rem)' }}
+                    style={{ fontSize: 'clamp(3rem, 12vw, 7rem)' }}
                   >
                     {link.label}
                   </Link>

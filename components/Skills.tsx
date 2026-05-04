@@ -15,6 +15,8 @@ const skills = [
   'Git',
 ];
 
+const rotations = [2, -2, 1.5, -1.5, 2.5, -2, 1, -2.5, 2];
+
 export default function Skills() {
   return (
     <Section id="skills" title="Skills" index={3}>
@@ -22,24 +24,34 @@ export default function Skills() {
         {skills.map((skill, i) => (
           <motion.div
             key={skill}
-            initial={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0, x: -16 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: i * 0.05 }}
-            className="group flex items-center justify-between py-5 border-b border-linen"
+            transition={{ type: 'spring', stiffness: 200, damping: 20, delay: i * 0.06 }}
+            whileHover={{
+              x: 8,
+              transition: { type: 'spring', stiffness: 500, damping: 15 },
+            }}
+            className="group flex items-center justify-between py-5 border-b border-linen cursor-default"
           >
-            <span
-              className="font-black leading-none tracking-tighter text-ink/20 group-hover:text-clay/40 transition-colors duration-300 select-none"
+            <motion.span
+              className="font-bold leading-none tracking-tighter text-ink/15 group-hover:text-clay/50 select-none"
               style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}
+              whileHover={{ scale: 1.1, transition: { type: 'spring', stiffness: 400, damping: 12 } }}
             >
               {String(i + 1).padStart(2, '0')}
-            </span>
-            <span
-              className="font-bold tracking-tight text-ink group-hover:text-clay transition-colors duration-300"
+            </motion.span>
+            <motion.span
+              className="font-bold tracking-tight text-ink group-hover:text-clay"
               style={{ fontSize: 'clamp(1.4rem, 3.5vw, 2.5rem)' }}
+              whileHover={{
+                rotate: rotations[i],
+                scale: 1.04,
+                transition: { type: 'spring', stiffness: 400, damping: 10 },
+              }}
             >
               {skill}
-            </span>
+            </motion.span>
           </motion.div>
         ))}
       </div>

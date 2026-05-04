@@ -28,9 +28,10 @@ function RevealWord({
           initial={{ y: '105%' }}
           animate={{ y: 0 }}
           transition={{
-            duration: 0.7,
+            type: 'spring',
+            stiffness: 200,
+            damping: 18,
             delay: startDelay + i * 0.04,
-            ease: [0.22, 1, 0.36, 1],
           }}
         >
           {char}

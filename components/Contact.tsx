@@ -1,3 +1,6 @@
+'use client';
+
+import { motion } from 'framer-motion';
 import Section from './Section';
 
 const links = [
@@ -9,36 +12,45 @@ const links = [
 export default function Contact() {
   return (
     <Section id="contact" title="Contact" alt index={4}>
-      {/* Big featured heading */}
       <div className="mb-16">
-        <p
+        <motion.p
           className="leading-[0.85] tracking-tighter text-ink"
           style={{ fontSize: 'clamp(3.5rem, 12vw, 11rem)' }}
+          whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
         >
           <span className="font-bold">Let&apos;s</span><br />
           <span className="font-light italic">Talk.</span>
-        </p>
+        </motion.p>
       </div>
 
-      {/* Contact links */}
       <div className="flex flex-col max-w-lg">
-        {links.map(({ label, href, display }) => (
-          <div
+        {links.map(({ label, href, display }, i) => (
+          <motion.div
             key={label}
             className="flex items-center gap-8 py-5 border-b border-linen"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ type: 'spring', stiffness: 200, damping: 20, delay: i * 0.08 }}
           >
-            <span className="text-[10px] tracking-[0.28em] uppercase font-sans text-ash/50 w-16 shrink-0">
+            <span className="text-[10px] tracking-[0.28em] uppercase text-ash/50 w-16 shrink-0">
               {label}
             </span>
-            <a
+            <motion.a
               href={href}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
-              className="font-sans font-light text-sm text-ink hover:text-clay transition-colors duration-300"
+              className="font-light text-sm text-ink"
+              whileHover={{
+                x: 6,
+                color: '#A896D0',
+                transition: { type: 'spring', stiffness: 500, damping: 20 },
+              }}
+              whileTap={{ scale: 0.97 }}
             >
               {display}
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
         ))}
       </div>
     </Section>
