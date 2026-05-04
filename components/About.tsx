@@ -21,70 +21,65 @@ export default function About() {
 
   return (
     <Section id="about" title={title} index={1}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-24 items-end">
 
-        {/* Left — bio + currently */}
-        <div className="flex flex-col gap-10">
-          <motion.p
-            className="font-serif font-light italic leading-[1.85] text-ash"
-            style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)' }}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
-          >
-            {bio}
-          </motion.p>
+      {/* Bio — full width, large */}
+      <motion.p
+        className="font-serif font-light italic leading-[1.8] text-ash max-w-3xl"
+        style={{ fontSize: 'clamp(1.2rem, 2.8vw, 1.75rem)' }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {bio}
+      </motion.p>
 
-          {/* Currently */}
-          <motion.div
-            className="flex flex-col gap-0"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
-          >
-            {currently.map(({ label, value }, i) => (
-              <motion.div
-                key={label}
-                className="flex items-baseline gap-5 py-3 border-b border-linen/40"
-                initial={{ opacity: 0, x: -12 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <span className="text-[11px] tracking-[0.2em] uppercase text-ash/40 w-14 shrink-0">
-                  {label}
-                </span>
-                <span className="font-light text-sm text-ink/70">{value}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+      {/* Lower strip — currently on left, stats on right */}
+      <div className="mt-16 sm:mt-20 grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-12 sm:gap-16 items-start">
+
+        {/* Currently */}
+        <div className="flex flex-col gap-0">
+          {currently.map(({ label, value }, i) => (
+            <motion.div
+              key={label}
+              className="flex items-baseline gap-6 py-3.5 border-b border-linen/50"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="text-[11px] tracking-[0.22em] uppercase text-ash/40 w-16 shrink-0">
+                {label}
+              </span>
+              <span className="font-light text-sm sm:text-base text-ink/65">{value}</span>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Right — large stat blocks */}
-        <div className="flex flex-col gap-12">
+        {/* Stats */}
+        <div className="flex flex-row sm:flex-col gap-10 sm:gap-10">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 160, damping: 22, delay: 0.15 + i * 0.14 }}
+              transition={{ type: 'spring', stiffness: 160, damping: 22, delay: 0.2 + i * 0.12 }}
             >
               {stat.lines.map((line) => (
                 <p
                   key={line}
                   className="font-bold leading-none tracking-tighter text-ink"
-                  style={{ fontSize: 'clamp(2.5rem, 6vw, 5.5rem)' }}
+                  style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)' }}
                 >
                   {line}
                 </p>
               ))}
-              <p className="text-[11px] tracking-[0.2em] uppercase text-ash/45 mt-3">{stat.label}</p>
+              <p className="text-[11px] tracking-[0.22em] uppercase text-ash/40 mt-2.5">{stat.label}</p>
             </motion.div>
           ))}
         </div>
+
       </div>
     </Section>
   );
