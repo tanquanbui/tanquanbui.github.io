@@ -71,7 +71,7 @@ export default function Hero() {
       {/* ── Top-right: location ── */}
       <motion.div
         {...fadeUp(1.35)}
-        className="absolute top-7 right-5 sm:right-10"
+        className="hidden sm:block absolute top-7 right-5 sm:right-10"
       >
         <span className="text-[11px] tracking-[0.25em] uppercase text-ash/35">
           Hồ Chí Minh City
@@ -97,7 +97,7 @@ export default function Hero() {
       {/* ── Bottom-left: tagline + availability ── */}
       <motion.div
         {...fadeUp(1.5)}
-        className="absolute bottom-7 left-5 sm:left-10 flex flex-col gap-1.5"
+        className="absolute bottom-7 left-5 sm:left-10 flex flex-col gap-2"
       >
         <span className="text-[11px] tracking-[0.28em] uppercase text-ash/50">
           {t.tagline}

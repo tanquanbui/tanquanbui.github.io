@@ -15,7 +15,7 @@ export default function Section({ id, title, children, alt = false, index }: Pro
   return (
     <section
       id={id}
-      className={`min-h-screen flex flex-col px-5 sm:px-12 pt-20 pb-16 ${alt ? 'bg-sand/60' : ''}`}
+      className={`min-h-screen flex flex-col px-5 sm:px-12 pt-14 sm:pt-20 pb-12 sm:pb-16 ${alt ? 'bg-sand/60' : ''}`}
     >
       {/* Section label — small, top left */}
       <motion.div
@@ -23,7 +23,7 @@ export default function Section({ id, title, children, alt = false, index }: Pro
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-        className="flex items-center gap-4 mb-auto pb-16"
+        className="flex items-center gap-4 mb-4 sm:mb-auto sm:pb-16"
       >
         {index !== undefined && (
           <span className="text-xs tracking-[0.25em] uppercase text-ash/50">
@@ -41,7 +41,7 @@ export default function Section({ id, title, children, alt = false, index }: Pro
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         style={{ willChange: 'transform' }}
-        className="max-w-6xl w-full mx-auto mt-auto"
+        className="max-w-6xl w-full mx-auto sm:mt-auto"
       >
         {children}
       </motion.div>

@@ -16,12 +16,12 @@ export default function Contact() {
 
   return (
     <Section id="contact" title={title} alt index={4}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-16 lg:gap-32 items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-32 items-end">
 
         {/* Big heading — left */}
         <motion.p
           className="leading-[0.82] tracking-tighter text-ink"
-          style={{ fontSize: 'clamp(4rem, 13vw, 12rem)' }}
+          style={{ fontSize: 'clamp(2.8rem, 13vw, 12rem)' }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,20 +37,20 @@ export default function Contact() {
           {links.map(({ label, href, display }, i) => (
             <motion.div
               key={label}
-              className="flex items-center gap-6 py-5 border-b border-linen/40"
+              className="flex items-center gap-6 py-4 sm:py-5 border-b border-linen/40"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 180, damping: 20, delay: 0.1 + i * 0.09 }}
             >
-              <span className="text-[10px] tracking-[0.28em] uppercase text-ash/40 w-14 shrink-0">
+              <span className="text-xs tracking-[0.2em] uppercase text-ash/40 w-14 shrink-0">
                 {label}
               </span>
               <motion.a
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="font-light text-sm text-ink whitespace-nowrap"
+                className="font-light text-sm text-ink break-all sm:whitespace-nowrap"
                 whileHover={{ x: 5, color: '#A896D0', transition: { type: 'spring', stiffness: 500, damping: 20 } }}
                 whileTap={{ scale: 0.97 }}
               >

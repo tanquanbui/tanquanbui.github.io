@@ -21,13 +21,13 @@ export default function About() {
 
   return (
     <Section id="about" title={title} index={1}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-20 lg:gap-32 items-end">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 lg:gap-24 items-end">
 
         {/* Left — bio + currently */}
         <div className="flex flex-col gap-10">
           <motion.p
             className="font-serif font-light italic leading-[1.85] text-ash"
-            style={{ fontSize: 'clamp(1.05rem, 2vw, 1.3rem)' }}
+            style={{ fontSize: 'clamp(1rem, 2.5vw, 1.3rem)' }}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -53,7 +53,7 @@ export default function About() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="text-[9px] tracking-[0.3em] uppercase text-ash/40 w-14 shrink-0">
+                <span className="text-[11px] tracking-[0.2em] uppercase text-ash/40 w-14 shrink-0">
                   {label}
                 </span>
                 <span className="font-light text-sm text-ink/70">{value}</span>
@@ -81,7 +81,7 @@ export default function About() {
                   {line}
                 </p>
               ))}
-              <p className="text-[9px] tracking-[0.28em] uppercase text-ash/45 mt-3">{stat.label}</p>
+              <p className="text-[11px] tracking-[0.2em] uppercase text-ash/45 mt-3">{stat.label}</p>
             </motion.div>
           ))}
         </div>

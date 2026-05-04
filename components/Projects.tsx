@@ -238,6 +238,9 @@ function ProjectCard({
           >
             {project.subtitle}
           </motion.p>
+          <p className="sm:hidden font-light text-sm text-ink/55 leading-relaxed mt-3 max-w-[85%]">
+            {project.description}
+          </p>
         </div>
         <motion.span
           className="text-xl sm:text-2xl text-ink/50 shrink-0 mb-1"

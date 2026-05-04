@@ -29,7 +29,7 @@ export default function Timeline() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 140, damping: 22, delay: i * 0.1 }}
-              className="relative flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0 pl-6 sm:pl-0 py-8 sm:py-10 border-b border-linen/30 group"
+              className="relative flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-0 pl-6 sm:pl-0 py-6 sm:py-10 border-b border-linen/30 group"
             >
               {/* Year — left column */}
               <div className="sm:w-28 shrink-0">
@@ -51,7 +51,7 @@ export default function Timeline() {
               <div className="sm:pl-10 flex-1">
                 <motion.h3
                   className="font-bold tracking-tight text-ink mb-2 group-hover:text-clay transition-colors duration-300"
-                  style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.8rem)' }}
+                  style={{ fontSize: 'clamp(1rem, 2.5vw, 1.6rem)' }}
                   whileHover={{ x: 4, transition: { type: 'spring', stiffness: 400, damping: 15 } }}
                 >
                   {item.role}

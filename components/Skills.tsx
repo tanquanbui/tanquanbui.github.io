@@ -41,7 +41,7 @@ export default function Skills() {
 
             {/* Expanding line */}
             <motion.div
-              className="flex-1 mx-6 sm:mx-10 h-px bg-linen/30 origin-left"
+              className="flex-1 mx-4 sm:mx-10 h-px bg-linen/30 origin-left"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
