@@ -1,72 +1,114 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import ProjectModal from './ProjectModal';
 import Section from './Section';
+import { useLang } from '@/lib/lang';
 
 const projects = [
   {
     title: 'How to Learn Vietnamese',
-    description:
-      'An online resource for learners to practice and improve their Vietnamese.',
+    description: 'An online resource for learners to practice and improve their Vietnamese.',
     href: 'https://howtolearnvietnamese.com',
     tag: 'Web',
+    year: '2024',
+    swatches: ['#BEACE2', '#D4B4C8', '#B2D7C3'],
   },
   {
     title: 'Project Two',
-    description:
-      'Short description of a project you\'ve built. Replace this with real content.',
+    description: "Short description of a project you've built. Replace this with real content.",
     href: '#',
     tag: 'App',
+    year: '2024',
+    swatches: ['#F5D0B4', '#E8C4B0', '#D4A896'],
   },
   {
     title: 'Project Three',
-    description:
-      'Short description of a project you\'ve built. Replace this with real content.',
+    description: "Short description of a project you've built. Replace this with real content.",
     href: '#',
     tag: 'Tool',
+    year: '2023',
+    swatches: ['#B2D7C3', '#A8CCC0', '#9ABFB2'],
   },
 ];
 
 export default function Projects() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLang();
+
+  const open = (i: number) => {
+    setSelectedIndex(i);
+    setIsOpen(true);
+  };
+
   return (
-    <Section id="projects" title="Projects" alt>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-linen">
-        {projects.map((project, i) => (
-          <motion.div
-            key={project.title}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="bg-parchment p-10 flex flex-col"
-          >
-            <div className="flex items-start justify-between mb-8">
-              <span className="text-[10px] tracking-[0.28em] uppercase font-sans text-clay">
-                {project.tag}
-              </span>
-              <span className="text-[10px] tracking-[0.1em] font-sans text-ash/50">
-                0{i + 1}
-              </span>
-            </div>
-            <h3 className="font-display font-light text-2xl text-ink mb-4 leading-snug">
-              {project.title}
-            </h3>
-            <p className="font-sans font-light text-sm text-ash leading-relaxed mb-10 flex-1">
-              {project.description}
-            </p>
-            {project.href !== '#' && (
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[11px] tracking-[0.18em] uppercase font-sans text-ink border-b border-ink pb-px hover:text-clay hover:border-clay transition-colors duration-300 self-start"
-              >
-                Visit
-              </a>
-            )}
-          </motion.div>
-        ))}
-      </div>
-    </Section>
+    <>
+      <Section id="projects" title={t.work.title} alt index={2}>
+        <div className="flex flex-col">
+          {projects.map((project, i) => (
+            <motion.button
+              key={project.title}
+              onClick={() => open(i)}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: i * 0.1 }}
+              whileHover={{ x: 6, transition: { type: 'spring', stiffness: 500, damping: 20 } }}
+              whileTap={{ scale: 0.99 }}
+              className="group w-full text-left py-8 sm:py-10 border-b border-linen cursor-pointer"
+            >
+              <div className="flex items-start gap-4 sm:gap-6">
+                <span className="font-bold text-2xl sm:text-[3.5rem] leading-none tracking-tighter text-ink/10 group-hover:text-clay/50 transition-colors duration-500 shrink-0 mt-1 select-none">
+                  0{i + 1}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                    <h3
+                      className="font-bold leading-tight tracking-tight text-ink group-hover:text-clay transition-colors duration-300"
+                      style={{ fontSize: 'clamp(1.3rem, 4vw, 2.8rem)' }}
+                    >
+                      {project.title}
+                    </h3>
+                    <div className="flex items-center gap-3 shrink-0">
+                      {/* Color swatches */}
+                      <div className="flex gap-1">
+                        {project.swatches.map((color) => (
+                          <motion.span
+                            key={color}
+                            className="w-3 h-3 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{ backgroundColor: color }}
+                            whileHover={{ scale: 1.3 }}
+                          />
+                        ))}
+                      </div>
+                      <span className="text-[10px] tracking-[0.25em] uppercase text-ash/60">{project.year}</span>
+                      <span className="text-[10px] tracking-[0.25em] uppercase text-clay">{project.tag}</span>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="font-light text-sm text-ash leading-relaxed max-w-md line-clamp-1">
+                      {project.description}
+                    </p>
+                    <span className="text-[11px] tracking-[0.2em] uppercase text-ash group-hover:text-clay transition-colors duration-300 shrink-0">
+                      Open →
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.button>
+          ))}
+        </div>
+      </Section>
+
+      <ProjectModal
+        projects={projects}
+        selectedIndex={selectedIndex}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        onChange={setSelectedIndex}
+      />
+    </>
   );
 }
