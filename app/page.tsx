@@ -6,7 +6,7 @@ import Intro from '@/components/Intro';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
-import Now from '@/components/Now';
+import Philosophy from '@/components/Philosophy';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
@@ -29,7 +29,7 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <About />
-        <Now />
+        <Philosophy />
         <Projects />
         <Skills />
         <Contact />
