@@ -33,7 +33,7 @@ export default function Timeline() {
             >
               {/* Year — left column */}
               <div className="sm:w-28 shrink-0">
-                <span className="text-[11px] tracking-[0.2em] uppercase text-ash/50 font-sans">
+                <span className="text-[11px] tracking-[0.2em] uppercase text-ash/70 font-sans">
                   {item.year}
                 </span>
               </div>
@@ -56,7 +56,7 @@ export default function Timeline() {
                 >
                   {item.role}
                 </motion.h3>
-                <p className="font-light text-sm text-ash/70 leading-relaxed">
+                <p className="font-light text-sm text-ash/85 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

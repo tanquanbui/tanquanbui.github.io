@@ -33,7 +33,7 @@ export default function Skills() {
           >
             {/* Number left */}
             <motion.span
-              className="font-bold text-xl sm:text-3xl leading-none tracking-tighter text-ink/10 group-hover:text-clay/60 select-none shrink-0"
+              className="font-bold text-xl sm:text-3xl leading-none tracking-tighter text-ink/20 group-hover:text-clay/70 select-none shrink-0"
               transition={{ type: 'spring', stiffness: 400, damping: 12 }}
             >
               {String(i + 1).padStart(2, '0')}

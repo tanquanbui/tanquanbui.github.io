@@ -198,7 +198,7 @@ function ProjectCard({
           0{index + 1}
         </span>
         <div className="flex items-center gap-4">
-          <span className="text-[10px] tracking-[0.22em] uppercase text-ink/40">{project.year}</span>
+          <span className="text-[10px] tracking-[0.22em] uppercase text-ink/65">{project.year}</span>
           <span
             className="text-[10px] tracking-[0.22em] uppercase"
             style={{ color: project.accent + 'BB' }}
