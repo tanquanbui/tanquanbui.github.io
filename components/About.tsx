@@ -48,7 +48,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-[11px] tracking-[0.22em] uppercase text-ash/60 w-16 shrink-0">
+              <span className="text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium w-16 shrink-0">
                 {label}
               </span>
               <span className="font-light text-sm sm:text-base text-ink/80">{value}</span>
@@ -75,7 +75,7 @@ export default function About() {
                   {line}
                 </p>
               ))}
-              <p className="text-[11px] tracking-[0.22em] uppercase text-ash/60 mt-2.5">{stat.label}</p>
+              <p className="text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium mt-2.5">{stat.label}</p>
             </motion.div>
           ))}
         </div>

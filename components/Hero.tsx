@@ -63,9 +63,9 @@ export default function Hero() {
         {...fadeUp(1.2)}
         className="absolute top-7 left-5 sm:left-10 flex items-center gap-3"
       >
-        <span className="text-[11px] tracking-[0.38em] uppercase text-ink/60">QB</span>
-        <span className="w-6 h-px bg-ink/25" />
-        <span className="text-[11px] tracking-[0.25em] uppercase text-ash/65">Creative Developer</span>
+        <span className="text-[11px] tracking-[0.3em] uppercase text-ink font-semibold">QB</span>
+        <span className="w-6 h-px bg-ink/40" />
+        <span className="text-[11px] tracking-[0.2em] uppercase text-ink/75 font-medium">Creative Developer</span>
       </motion.div>
 
       {/* ── Top-right: location ── */}
@@ -73,7 +73,7 @@ export default function Hero() {
         {...fadeUp(1.35)}
         className="hidden sm:block absolute top-7 right-5 sm:right-10"
       >
-        <span className="text-[11px] tracking-[0.25em] uppercase text-ash/60">
+        <span className="text-[11px] tracking-[0.2em] uppercase text-ink/70 font-medium">
           Melbourne, Australia
         </span>
       </motion.div>
@@ -99,7 +99,7 @@ export default function Hero() {
         {...fadeUp(1.5)}
         className="absolute bottom-7 left-5 sm:left-10 flex flex-col gap-2"
       >
-        <span className="text-[11px] tracking-[0.28em] uppercase text-ash/70">
+        <span className="text-[11px] tracking-[0.2em] uppercase text-ink/75 font-medium">
           {t.tagline}
         </span>
         <div className="flex items-center gap-2">
@@ -108,7 +108,7 @@ export default function Hero() {
             transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
             className="w-[5px] h-[5px] rounded-full bg-clay shrink-0"
           />
-          <span className="text-[11px] tracking-[0.28em] uppercase text-ash/65">
+          <span className="text-[11px] tracking-[0.2em] uppercase text-ink/70 font-medium">
             {t.available}
           </span>
         </div>
@@ -119,11 +119,11 @@ export default function Hero() {
         {...fadeUp(1.8)}
         className="absolute bottom-7 right-5 sm:right-10 flex flex-col items-center gap-2"
       >
-        <span className="text-[10px] tracking-[0.3em] uppercase text-ash/55 [writing-mode:vertical-rl]">
+        <span className="text-[10px] tracking-[0.25em] uppercase text-ink/60 font-medium [writing-mode:vertical-rl]">
           Scroll
         </span>
         <motion.div
-          className="w-px bg-ash/25 origin-top"
+          className="w-px bg-ink/30 origin-top"
           animate={{ scaleY: [0, 1, 1, 0] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut', times: [0, 0.4, 0.8, 1] }}
           style={{ height: 40 }}

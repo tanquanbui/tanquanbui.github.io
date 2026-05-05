@@ -43,7 +43,7 @@ export default function Contact() {
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 180, damping: 20, delay: 0.1 + i * 0.09 }}
             >
-              <span className="text-xs tracking-[0.2em] uppercase text-ash/65 w-14 shrink-0">
+              <span className="text-xs tracking-[0.18em] uppercase text-ink/65 font-medium w-14 shrink-0">
                 {label}
               </span>
               <motion.a

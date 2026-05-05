@@ -28,12 +28,12 @@ export default function Section({ id, title, children, alt = false, index }: Pro
           className="flex items-center gap-4 mb-16 sm:mb-20"
         >
           {index !== undefined && (
-            <span className="text-xs tracking-[0.25em] uppercase text-ash/60 shrink-0">
+            <span className="text-xs tracking-[0.2em] uppercase text-ink/50 font-semibold shrink-0">
               {String(index).padStart(2, '0')}
             </span>
           )}
           <div className="flex-1 h-px bg-linen" />
-          <h2 className="text-xs tracking-[0.25em] uppercase text-ash/70 font-medium shrink-0">
+          <h2 className="text-xs tracking-[0.2em] uppercase text-ink/70 font-semibold shrink-0">
             {title}
           </h2>
         </motion.div>
