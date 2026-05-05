@@ -6,12 +6,12 @@ export type Lang = 'en' | 'vi';
 
 export const translations = {
   en: {
-    tagline: 'building the web from Vietnam',
+    tagline: 'building the web from Melbourne',
     available: 'Available for work',
     nav: ['About', 'Work', 'Skills', 'Contact'],
     about: {
       title: 'About',
-      bio: `I make things on the web that feel alive — digital experiences where code and craft blur into something you can feel. Based in Vietnam, working at the intersection of design, motion, and software.`,
+      bio: `I make things on the web that feel alive — digital experiences where code and craft blur into something you can feel. Based in Melbourne, working at the intersection of design, motion, and software.`,
       openToWork: ['Open', 'to work'],
       webDev: ['Web', 'Dev'],
       status: 'Status',
@@ -31,7 +31,7 @@ export const translations = {
     contact: { title: 'Contact', lets: "Let's", talk: 'Talk.' },
   },
   vi: {
-    tagline: 'xây dựng web từ Việt Nam',
+    tagline: 'xây dựng web từ Melbourne',
     available: 'Sẵn sàng làm việc',
     nav: ['Về tôi', 'Dự án', 'Kỹ năng', 'Liên hệ'],
     about: {
