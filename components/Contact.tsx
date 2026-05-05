@@ -5,9 +5,9 @@ import Section from './Section';
 import { useLang } from '@/lib/lang';
 
 const links = [
-  { label: 'Email', href: 'mailto:hello@example.com', display: 'hello@example.com' },
+  { label: 'Email', href: 'mailto:tanquanbui@gmail.com', display: 'tanquanbui@gmail.com' },
   { label: 'GitHub', href: 'https://github.com/tanquanbui', display: 'github.com/tanquanbui' },
-  { label: 'LinkedIn', href: '#', display: 'linkedin.com/in/tanquanbui' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/quan-bui2412/', display: 'linkedin.com/in/tanquanbui' },
 ];
 
 export default function Contact() {
