@@ -7,22 +7,22 @@ const principles = [
   {
     index: '01',
     heading: 'craft over output',
-    body: 'I'd rather spend twice as long on one thing and have it feel right than ship ten things that feel hollow. The details most people skip are the ones I find most interesting.',
+    body: "I'd rather spend twice as long on one thing and have it feel right than ship ten things that feel hollow. The details most people skip are the ones I find most interesting.",
   },
   {
     index: '02',
     heading: 'motion is meaning',
-    body: 'How something moves tells you what it is. Animation isn't decoration — it's the difference between a page and an experience. I treat every transition as a design decision.',
+    body: "How something moves tells you what it is. Animation isn't decoration — it's the difference between a page and an experience. I treat every transition as a design decision.",
   },
   {
     index: '03',
     heading: 'learn by making',
-    body: 'I don't wait until I know enough to start. I build things to understand them — experiments, prototypes, half-finished ideas. The making is the learning.',
+    body: "I don't wait until I know enough to start. I build things to understand them — experiments, prototypes, half-finished ideas. The making is the learning.",
   },
   {
     index: '04',
     heading: 'code is a creative medium',
-    body: 'A browser is a canvas. Constraints are a starting point. I'm not interested in separating design from engineering — the most interesting work lives in that overlap.',
+    body: "A browser is a canvas. Constraints are a starting point. I'm not interested in separating design from engineering — the most interesting work lives in that overlap.",
   },
 ];
 
