@@ -7,6 +7,7 @@ export default function Intro() {
   const [visible, setVisible] = useState(true);
   const [display, setDisplay] = useState(0);
   const count = useMotionValue(0);
+  const progressScale = useTransform(count, [0, 100], [0, 1]);
 
   useEffect(() => {
     const controls = animate(count, 100, {
@@ -80,7 +81,7 @@ export default function Intro() {
             <div className="h-px bg-linen w-full overflow-hidden">
               <motion.div
                 className="h-full bg-ink/40 origin-left"
-                style={{ scaleX: useTransform(count, [0, 100], [0, 1]) }}
+                style={{ scaleX: progressScale }}
               />
             </div>
             <motion.p
