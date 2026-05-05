@@ -5,7 +5,7 @@ import Section from './Section';
 import { useLang } from '@/lib/lang';
 
 const currently = [
-  { label: 'Based', value: 'Hồ Chí Minh City' },
+  { label: 'Based', value: 'Melbourne, Australia' },
   { label: 'Status', value: 'Open to new work' },
   { label: 'Building', value: 'Creative tools & web experiments' },
 ];

@@ -74,7 +74,7 @@ export default function Hero() {
         className="hidden sm:block absolute top-7 right-5 sm:right-10"
       >
         <span className="text-[11px] tracking-[0.25em] uppercase text-ash/60">
-          Hồ Chí Minh City
+          Melbourne, Australia
         </span>
       </motion.div>
 
