@@ -51,7 +51,7 @@ export default function Contact() {
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
                 className="font-light text-sm text-ink break-all sm:whitespace-nowrap"
-                whileHover={{ x: 5, color: '#A896D0', transition: { type: 'spring', stiffness: 500, damping: 20 } }}
+                whileHover={{ x: 5, color: '#4A6B48', transition: { type: 'spring', stiffness: 500, damping: 20 } }}
                 whileTap={{ scale: 0.97 }}
               >
                 {display}

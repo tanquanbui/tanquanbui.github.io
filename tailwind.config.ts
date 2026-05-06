@@ -12,13 +12,13 @@ const config: Config = {
         serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
       },
       colors: {
-        paper: '#FAF8F5',
-        ink: '#1C1A1A',
-        clay: '#A896D0',
-        ash: '#9A9090',
-        linen: '#E8E2D8',
-        parchment: '#F4F0EA',
-        sand: '#F0EBE3',
+        paper: '#F2E8D0',      // aged plaster — the iconic Saigon wall
+        ink: '#1C1208',        // deep old wood / shadow interior
+        clay: '#4A6B48',       // colonial shutter green
+        ash: '#8A7D6A',        // weathered concrete
+        linen: '#D8C9A8',      // aged trim / patina
+        parchment: '#EAD9BC',  // lighter plaster
+        sand: '#E2D0B0',       // sun-faded wall
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease forwards',
