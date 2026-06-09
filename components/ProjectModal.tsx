@@ -12,6 +12,8 @@ type Project = {
   year: string;
   gradient?: string;
   accent?: string;
+  screenshot?: string | null;
+  stack?: readonly string[];
 };
 
 type Props = {
@@ -117,18 +119,27 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
             <div className="flex-1 overflow-y-auto overscroll-contain">
               <div className="px-6 sm:px-10 pb-10">
 
-                {/* Gradient band */}
+                {/* Screenshot or gradient band */}
                 <motion.div
                   key={selectedIndex}
                   initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full rounded-xl mb-8 sm:mb-10"
+                  className="relative w-full rounded-xl mb-8 sm:mb-10 overflow-hidden"
                   style={{
-                    height: 'clamp(120px, 22vh, 200px)',
+                    height: 'clamp(180px, 38vh, 360px)',
                     background: project.gradient ?? 'linear-gradient(145deg, #C8B6E8, #ECC6D6)',
                   }}
-                />
+                >
+                  {project.screenshot && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={project.screenshot}
+                      alt={`${project.title} screenshot`}
+                      className="absolute inset-0 w-full h-full object-cover object-top"
+                    />
+                  )}
+                </motion.div>
 
                 {/* Title */}
                 <AnimatePresence mode="wait">
@@ -153,10 +164,23 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                       </p>
                     )}
 
-                    <p className="font-light text-ink/65 leading-relaxed max-w-xl mb-8 sm:mb-10"
+                    <p className="font-light text-ink/65 leading-relaxed max-w-xl mb-6 sm:mb-8"
                       style={{ fontSize: 'clamp(0.95rem, 1.6vw, 1.05rem)' }}>
                       {project.description}
                     </p>
+
+                    {project.stack && project.stack.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-8 sm:mb-10">
+                        {project.stack.map((tech) => (
+                          <span
+                            key={tech}
+                            className="text-[10px] tracking-[0.14em] uppercase font-medium px-3 py-1.5 rounded-full bg-linen/60 text-ink/65"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    )}
 
                     {project.href !== '#' && (
                       <motion.a
@@ -168,7 +192,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
                       >
-                        Visit Site →
+                        View Code →
                       </motion.a>
                     )}
                   </motion.div>
