@@ -8,39 +8,7 @@ import { useLang } from '@/lib/lang';
 
 // ── Decorative SVG elements (parallax on mouse) ──────────────────────────────
 
-function FolioDecor() {
-  return (
-    <svg width="380" height="260" viewBox="0 0 380 260" fill="none">
-      {Array.from({ length: 9 }).map((_, i) => (
-        <rect
-          key={i}
-          x={14 + (i % 3) * 122}
-          y={14 + Math.floor(i / 3) * 78}
-          width="104"
-          height="64"
-          rx="8"
-          fill="#1C1A1A"
-          opacity={0.08 + (i % 3) * 0.025}
-        />
-      ))}
-      {/* Simulated image placeholder bars */}
-      {Array.from({ length: 9 }).map((_, i) => (
-        <rect
-          key={`b${i}`}
-          x={14 + (i % 3) * 122}
-          y={54 + Math.floor(i / 3) * 78}
-          width={60 + (i % 4) * 8}
-          height="6"
-          rx="3"
-          fill="#1C1A1A"
-          opacity={0.12}
-        />
-      ))}
-    </svg>
-  );
-}
-
-// Precompute wave path so it's stable across renders
+// Precompute waveforms once so they're stable across renders
 const tempoWave1 = Array.from({ length: 100 }, (_, i) => {
   const t = i / 99;
   const x = t * 400;
@@ -55,33 +23,68 @@ const tempoWave2 = Array.from({ length: 100 }, (_, i) => {
   return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)},${y.toFixed(1)}`;
 }).join(' ');
 
-function TempoDecor() {
+function PitStopDecor() {
+  // Telemetry traces + dotted track
+  const trace = Array.from({ length: 110 }, (_, i) => {
+    const t = i / 109;
+    const x = t * 420;
+    const y = 130 + Math.sin(t * Math.PI * 4.5) * 42 + Math.cos(t * Math.PI * 9) * 12;
+    return `${i === 0 ? 'M' : 'L'} ${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
   return (
-    <svg width="400" height="260" viewBox="0 0 400 260" fill="none">
-      <path d={tempoWave1} stroke="#1C1A1A" strokeWidth="2.5" strokeLinecap="round" opacity={0.14} />
-      <path d={tempoWave2} stroke="#1C1A1A" strokeWidth="1.5" strokeLinecap="round" opacity={0.09} />
-      {/* Frequency dots */}
-      {Array.from({ length: 18 }, (_, i) => {
-        const x = 18 + i * 21;
-        const h = 18 + Math.sin(i * 0.9) * 14 + Math.sin(i * 2.1) * 10;
-        return <rect key={i} x={x} y={130 - h / 2} width="9" height={h} rx="4" fill="#1C1A1A" opacity={0.1} />;
+    <svg width="420" height="260" viewBox="0 0 420 260" fill="none">
+      <path d={trace} stroke="#1C1A1A" strokeWidth="2" strokeLinecap="round" opacity={0.12} />
+      {/* Sector markers */}
+      {[60, 140, 240, 340].map((x) => (
+        <line key={x} x1={x} y1="60" x2={x} y2="200" stroke="#1C1A1A" strokeWidth="1" strokeDasharray="3 4" opacity={0.1} />
+      ))}
+      {/* Speed bars */}
+      {Array.from({ length: 22 }, (_, i) => {
+        const x = 8 + i * 19;
+        const h = 16 + Math.sin(i * 0.7) * 12 + Math.sin(i * 1.7) * 10;
+        return <rect key={i} x={x} y={210 - h} width="6" height={h} rx="2" fill="#1C1A1A" opacity={0.09} />;
       })}
     </svg>
   );
 }
 
-function FormaDecor() {
+function NotesDecor() {
+  // Stacked note cards with checklist rows
   return (
-    <svg width="360" height="260" viewBox="0 0 360 260" fill="none">
-      {/* Oversized italic letterforms */}
-      <text x="50%" y="72%" fontSize="220" fontStyle="italic" fontWeight="700"
-        textAnchor="middle" fill="#1C1A1A" opacity={0.07} fontFamily="serif">
-        Aa
-      </text>
-      {/* Type metric lines */}
-      {[38, 72, 188, 210].map((y) => (
-        <line key={y} x1="20" y1={y} x2="340" y2={y} stroke="#1C1A1A" strokeWidth="1" opacity={0.1} />
+    <svg width="380" height="260" viewBox="0 0 380 260" fill="none">
+      {[0, 1, 2].map((i) => {
+        const offset = i * 14;
+        return (
+          <g key={i} opacity={0.09 + i * 0.025}>
+            <rect x={50 + offset} y={36 + offset} width="240" height="170" rx="10" fill="#1C1A1A" />
+          </g>
+        );
+      })}
+      {/* Checklist rows on top card */}
+      {[0, 1, 2, 3].map((i) => (
+        <g key={`row${i}`} opacity={0.18}>
+          <rect x={108} y={78 + i * 28} width="12" height="12" rx="3" fill="none" stroke="#1C1A1A" strokeWidth="1.5" />
+          {i < 2 && (
+            <path d={`M ${110} ${85 + i * 28} L ${114} ${89 + i * 28} L ${120} ${82 + i * 28}`} stroke="#1C1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" />
+          )}
+          <rect x={130} y={82 + i * 28} width={120 - i * 18} height="4" rx="2" fill="#1C1A1A" opacity={0.6} />
+        </g>
       ))}
+    </svg>
+  );
+}
+
+function PersonifyDecor() {
+  return (
+    <svg width="400" height="260" viewBox="0 0 400 260" fill="none">
+      <path d={tempoWave1} stroke="#1C1A1A" strokeWidth="2.5" strokeLinecap="round" opacity={0.14} />
+      <path d={tempoWave2} stroke="#1C1A1A" strokeWidth="1.5" strokeLinecap="round" opacity={0.09} />
+      {/* Equalizer bars */}
+      {Array.from({ length: 18 }, (_, i) => {
+        const x = 18 + i * 21;
+        const h = 22 + Math.sin(i * 0.9) * 18 + Math.sin(i * 2.1) * 12;
+        return <rect key={i} x={x} y={130 - h / 2} width="9" height={h} rx="4" fill="#1C1A1A" opacity={0.1} />;
+      })}
     </svg>
   );
 }
@@ -90,40 +93,46 @@ function FormaDecor() {
 
 export const projects = [
   {
-    title: 'Folio',
-    subtitle: 'Portfolio builder for creative studios',
-    description: 'A minimal, opinionated portfolio platform built for artists and designers who want to focus on their work — not their website. Drag, compose, publish.',
-    href: '#',
+    title: 'PitStop Analytics',
+    subtitle: 'Serverless F1 race intelligence',
+    description: 'A serverless Formula 1 race intelligence platform on AWS — ingests telemetry from FastF1 + Ergast, builds team performance fingerprints, and predicts race outcomes from interpretable signals like qualifying pace, recent form, overtaking, reliability, and track fit.',
+    href: 'https://github.com/tanquanbui/FastF1Analysis',
+    tag: 'Data · Cloud',
+    year: '2025',
+    swatches: ['#D43C3C', '#A82828', '#6E1818'],
+    gradient: 'linear-gradient(145deg, #E66060 0%, #8A1818 100%)',
+    accent: '#5A1010',
+    Decor: PitStopDecor,
+    screenshot: '/projects/fastf1.png',
+    stack: ['Python', 'AWS Lambda', 'DynamoDB', 'SageMaker', 'CloudFront', 'FastF1', 'XGBoost'],
+  },
+  {
+    title: 'Notes',
+    subtitle: 'Interactive task management',
+    description: 'A full-stack task management tool focused on interactive design — add tasks with tags, toggle completion, and persist across sessions. Built with React on the front, Node + Express + MongoDB Atlas on the back.',
+    href: 'https://github.com/tanquanbui/Interactive-todo-list',
     tag: 'Web App',
     year: '2024',
-    swatches: ['#E8C860', '#D4A830', '#C8922A'],
-    gradient: 'linear-gradient(145deg, #F0DC90 0%, #D4A030 100%)',
-    accent: '#9A6C14',
-    Decor: FolioDecor,
+    swatches: ['#E8A86B', '#D48A45', '#A66628'],
+    gradient: 'linear-gradient(145deg, #F2C48F 0%, #C07840 100%)',
+    accent: '#7A4818',
+    Decor: NotesDecor,
+    screenshot: '/projects/todo.png',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Axios'],
   },
   {
-    title: 'Forma',
-    subtitle: 'Live typography exploration tool',
-    description: 'Manipulate typefaces in real time — weight, width, optical size, letter-spacing. Export your decisions as CSS custom properties or design tokens.',
-    href: '#',
-    tag: 'Experiment',
-    year: '2023',
-    swatches: ['#8AAA88', '#6A8A68', '#4A6B48'],
-    gradient: 'linear-gradient(145deg, #B8D4B0 0%, #6A9060 100%)',
-    accent: '#3A5C38',
-    Decor: FormaDecor,
-  },
-  {
-    title: 'Tempo',
-    subtitle: 'Audio-reactive generative art',
-    description: 'Feed it sound; it gives you motion. An experiment in translating frequency, rhythm, and timbre into real-time generative visuals.',
-    href: '#',
-    tag: 'Art',
-    year: '2023',
-    swatches: ['#D4805A', '#C06040', '#A84828'],
-    gradient: 'linear-gradient(145deg, #E0A080 0%, #B85030 100%)',
-    accent: '#8A3018',
-    Decor: TempoDecor,
+    title: 'Personify',
+    subtitle: 'Spotify listening habits, visualized',
+    description: 'A web application that visualizes your Spotify listening patterns — top tracks, artists, and genres — through interactive D3 charts and parallax-driven storytelling powered by the Spotify Web API.',
+    href: 'https://github.com/tanquanbui/personify-spotify-analysis',
+    tag: 'Web App',
+    year: '2024',
+    swatches: ['#5FCB6B', '#1DB954', '#0F8C3A'],
+    gradient: 'linear-gradient(145deg, #7EE092 0%, #0F8C3A 100%)',
+    accent: '#0A6628',
+    Decor: PersonifyDecor,
+    screenshot: null,
+    stack: ['React', 'D3.js', 'Framer Motion', 'Express', 'Spotify Web API'],
   },
 ];
 
