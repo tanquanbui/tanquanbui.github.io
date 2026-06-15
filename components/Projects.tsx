@@ -136,9 +136,9 @@ export const projects = [
   },
 ];
 
-// ── Project card ──────────────────────────────────────────────────────────────
+// ── Featured project row ───────────────────────────────────────────────────────
 
-function ProjectCard({
+function ProjectRow({
   project,
   index,
   onOpen,
@@ -147,15 +147,15 @@ function ProjectCard({
   index: number;
   onOpen: () => void;
 }) {
-  const cardRef = useRef<HTMLButtonElement>(null);
+  const visualRef = useRef<HTMLButtonElement>(null);
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
   const spring = { stiffness: 70, damping: 18 };
-  const decorX = useSpring(useTransform(mouseX, [0, 1], [-28, 28]), spring);
-  const decorY = useSpring(useTransform(mouseY, [0, 1], [-18, 18]), spring);
+  const decorX = useSpring(useTransform(mouseX, [0, 1], [-24, 24]), spring);
+  const decorY = useSpring(useTransform(mouseY, [0, 1], [-16, 16]), spring);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = cardRef.current?.getBoundingClientRect();
+    const rect = visualRef.current?.getBoundingClientRect();
     if (!rect) return;
     mouseX.set((e.clientX - rect.left) / rect.width);
     mouseY.set((e.clientY - rect.top) / rect.height);
@@ -166,101 +166,144 @@ function ProjectCard({
     mouseY.set(0.5);
   };
 
+  // Alternate sides on desktop: even = visual left, odd = visual right
+  const flip = index % 2 === 1;
+
   return (
-    <motion.button
-      ref={cardRef}
-      onClick={onOpen}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+    <motion.article
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.9, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      whileHover="hovered"
-      className="group relative w-full overflow-hidden rounded-2xl text-left cursor-pointer"
-      style={{
-        minHeight: 'clamp(260px, 50vh, 480px)',
-        background: project.gradient,
-      }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      className="grid gap-7 sm:gap-10 lg:grid-cols-2 lg:items-center"
     >
-      {/* Decorative SVG — tracks mouse */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-        style={{ x: decorX, y: decorY }}
+      {/* ── Visual (screenshot or gradient + decor) ── */}
+      <motion.button
+        ref={visualRef}
+        onClick={onOpen}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        whileHover="hovered"
+        aria-label={`Open ${project.title} details`}
+        className={`group relative w-full overflow-hidden rounded-2xl cursor-pointer ${flip ? 'lg:order-2' : ''}`}
+        style={{
+          minHeight: 'clamp(220px, 40vh, 380px)',
+          background: project.gradient,
+        }}
       >
-        <project.Decor />
-      </motion.div>
+        {project.screenshot ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <motion.img
+              src={project.screenshot}
+              alt={`${project.title} screenshot`}
+              className="absolute inset-0 w-full h-full object-cover object-top"
+              variants={{ hovered: { scale: 1.04 } }}
+              transition={{ type: 'spring', stiffness: 200, damping: 28 }}
+            />
+            <div className="absolute inset-0 ring-1 ring-inset ring-ink/10 rounded-2xl pointer-events-none" />
+          </>
+        ) : (
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+            style={{ x: decorX, y: decorY }}
+          >
+            <project.Decor />
+          </motion.div>
+        )}
 
-      {/* Hover scrim */}
-      <motion.div
-        className="absolute inset-0 bg-white/0"
-        variants={{ hovered: { backgroundColor: 'rgba(255,255,255,0.06)' } }}
-        transition={{ duration: 0.3 }}
-      />
+        {/* Hover scrim */}
+        <motion.div
+          className="absolute inset-0"
+          initial={{ backgroundColor: 'rgba(28,18,8,0)' }}
+          variants={{ hovered: { backgroundColor: 'rgba(28,18,8,0.10)' } }}
+          transition={{ duration: 0.3 }}
+        />
 
-      {/* Top metadata */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-between px-7 sm:px-10 pt-7">
-        <span
-          className="text-[10px] tracking-[0.32em] uppercase font-semibold"
-          style={{ color: project.accent }}
+        {/* "View" pill on hover */}
+        <motion.span
+          className="absolute bottom-4 right-4 flex items-center gap-2 px-4 py-2 rounded-full text-[10px] tracking-[0.2em] uppercase font-semibold text-paper backdrop-blur-sm"
+          style={{ backgroundColor: (project.accent ?? '#1C1208') + 'E6' }}
+          initial={{ opacity: 0, y: 8 }}
+          variants={{ hovered: { opacity: 1, y: 0 } }}
+          transition={{ duration: 0.25 }}
         >
-          0{index + 1}
-        </span>
-        <div className="flex items-center gap-4">
-          <span className="text-[10px] tracking-[0.22em] uppercase text-ink/65">{project.year}</span>
+          View details →
+        </motion.span>
+      </motion.button>
+
+      {/* ── Details (always visible) ── */}
+      <div className={flip ? 'lg:order-1' : ''}>
+        <div className="flex items-center gap-4 mb-4">
           <span
-            className="text-[10px] tracking-[0.22em] uppercase"
-            style={{ color: project.accent + 'BB' }}
+            className="text-[11px] tracking-[0.28em] uppercase font-semibold"
+            style={{ color: project.accent }}
+          >
+            0{index + 1}
+          </span>
+          <div className="flex-1 h-px bg-linen" />
+          <span className="text-[10px] tracking-[0.22em] uppercase text-ink/45">{project.year}</span>
+          <span
+            className="text-[10px] tracking-[0.22em] uppercase font-medium"
+            style={{ color: (project.accent ?? '#1C1208') + 'CC' }}
           >
             {project.tag}
           </span>
         </div>
-      </div>
 
-      {/* Center description — appears on hover */}
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center px-10 sm:px-16"
-        initial={{ opacity: 0 }}
-        variants={{ hovered: { opacity: 1 } }}
-        transition={{ duration: 0.28 }}
-      >
-        <p className="font-light text-sm sm:text-base text-ink/65 leading-relaxed text-center max-w-xs sm:max-w-sm">
+        <h3
+          className="font-bold tracking-tighter text-ink leading-[0.95]"
+          style={{ fontSize: 'clamp(2rem, 4vw, 3.2rem)' }}
+        >
+          {project.title}
+        </h3>
+
+        <p
+          className="font-serif font-light italic mt-2 mb-4"
+          style={{ fontSize: 'clamp(1rem, 1.6vw, 1.15rem)', color: (project.accent ?? '#1C1208') + 'CC' }}
+        >
+          {project.subtitle}
+        </p>
+
+        <p className="font-light text-ink/65 leading-relaxed max-w-md"
+          style={{ fontSize: 'clamp(0.92rem, 1.4vw, 1rem)' }}>
           {project.description}
         </p>
-      </motion.div>
 
-      {/* Bottom info */}
-      <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-7 sm:px-10 pb-7">
-        <div>
-          <motion.h3
-            className="font-bold tracking-tighter text-ink leading-none"
-            style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}
-            variants={{ hovered: { y: -5 } }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-          >
-            {project.title}
-          </motion.h3>
-          <motion.p
-            className="text-[11px] tracking-[0.18em] uppercase text-ink/45 mt-2"
-            variants={{ hovered: { opacity: 0 } }}
-            transition={{ duration: 0.2 }}
-          >
-            {project.subtitle}
-          </motion.p>
-          <p className="sm:hidden font-light text-sm text-ink/55 leading-relaxed mt-3 max-w-[85%]">
-            {project.description}
-          </p>
+        {/* Tech stack chips */}
+        <div className="flex flex-wrap gap-2 mt-5">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="text-[10px] tracking-[0.14em] uppercase font-medium px-3 py-1.5 rounded-full bg-linen/50 text-ink/65"
+            >
+              {tech}
+            </span>
+          ))}
         </div>
-        <motion.span
-          className="text-xl sm:text-2xl text-ink/50 shrink-0 mb-1"
-          variants={{ hovered: { x: 5, rotate: -40 } }}
-          style={{ color: project.accent + '99' }}
-          transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-        >
-          →
-        </motion.span>
+
+        {/* Actions */}
+        <div className="flex items-center gap-5 mt-7">
+          <button
+            onClick={onOpen}
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-[11px] tracking-[0.2em] uppercase font-semibold text-paper transition-transform hover:scale-[1.03] active:scale-[0.97]"
+            style={{ backgroundColor: project.accent }}
+          >
+            View details →
+          </button>
+          {project.href !== '#' && (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] tracking-[0.2em] uppercase font-medium text-ink/50 hover:text-ink transition-colors"
+            >
+              Source ↗
+            </a>
+          )}
+        </div>
       </div>
-    </motion.button>
+    </motion.article>
   );
 }
 
@@ -276,9 +319,9 @@ export default function Projects() {
   return (
     <>
       <Section id="projects" title={t.work.title} alt index={2}>
-        <div className="flex flex-col gap-4 sm:gap-5">
+        <div className="flex flex-col gap-20 sm:gap-28">
           {projects.map((project, i) => (
-            <ProjectCard key={project.title} project={project} index={i} onOpen={() => open(i)} />
+            <ProjectRow key={project.title} project={project} index={i} onOpen={() => open(i)} />
           ))}
         </div>
       </Section>
