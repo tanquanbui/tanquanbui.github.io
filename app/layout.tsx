@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Space_Grotesk, Fraunces } from 'next/font/google';
+import { Space_Grotesk, Anton, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 
 const spaceGrotesk = Space_Grotesk({
@@ -9,11 +9,17 @@ const spaceGrotesk = Space_Grotesk({
   display: 'swap',
 });
 
-const fraunces = Fraunces({
+const anton = Anton({
   subsets: ['latin'],
-  weight: ['300', '400', '600', '700'],
-  style: ['normal', 'italic'],
-  variable: '--font-fraunces',
+  weight: ['400'],
+  variable: '--font-anton',
+  display: 'swap',
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  variable: '--font-mono',
   display: 'swap',
 });
 
@@ -24,8 +30,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${fraunces.variable}`}>
-      <body className="font-sans">{children}</body>
+    <html lang="en" className={`${spaceGrotesk.variable} ${anton.variable} ${jetbrainsMono.variable}`}>
+      <body className="font-sans">
+        {children}
+        <div className="grain-overlay" aria-hidden="true" />
+      </body>
     </html>
   );
 }

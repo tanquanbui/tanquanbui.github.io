@@ -2,19 +2,49 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  background-color: #F9F7F4;
-  color: #1A1815;
+  background-color: #F5F2EA;
+  color: #0A0A0A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
+  overflow-x: hidden;
 }
 
 ::selection {
-  background-color: #1A1815;
-  color: #F9F7F4;
+  background-color: #FF3D1A;
+  color: #F5F2EA;
+}
+
+/* Film grain — a static SVG-noise data URI tiled over the whole page.
+   Cheap: one paint, no per-frame cost, just adds material texture. */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.bg-blob {
+  animation-name: blob-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes blob-float {
+  0% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(var(--x1), var(--y1), 0); }
+  66% { transform: translate3d(var(--x2), var(--y2), 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
 }

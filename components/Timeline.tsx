@@ -33,7 +33,7 @@ export default function Timeline() {
             >
               {/* Year — left column */}
               <div className="sm:w-28 shrink-0">
-                <span className="text-[11px] tracking-[0.2em] uppercase text-ash/70 font-sans">
+                <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-ash/70">
                   {item.year}
                 </span>
               </div>
@@ -50,7 +50,7 @@ export default function Timeline() {
               {/* Content — right */}
               <div className="sm:pl-10 flex-1">
                 <motion.h3
-                  className="font-bold tracking-tight text-ink mb-2 group-hover:text-clay transition-colors duration-300"
+                  className="font-display uppercase tracking-tight text-ink mb-2 group-hover:text-clay transition-colors duration-300"
                   style={{ fontSize: 'clamp(1rem, 2.5vw, 1.6rem)' }}
                   whileHover={{ x: 4, transition: { type: 'spring', stiffness: 400, damping: 15 } }}
                 >

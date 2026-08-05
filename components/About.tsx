@@ -24,7 +24,7 @@ export default function About() {
 
       {/* Bio — full width, large */}
       <motion.p
-        className="font-serif font-light italic leading-[1.8] text-ash max-w-3xl"
+        className="font-sans font-light leading-[1.8] text-ash max-w-3xl"
         style={{ fontSize: 'clamp(1.2rem, 2.8vw, 1.75rem)' }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -42,13 +42,13 @@ export default function About() {
           {currently.map(({ label, value }, i) => (
             <motion.div
               key={label}
-              className="flex items-baseline gap-6 py-3.5 border-b border-linen/50"
+              className="flex items-baseline gap-6 py-3.5 border-b border-ink/15"
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.15 + i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium w-16 shrink-0">
+              <span className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium w-16 shrink-0">
                 {label}
               </span>
               <span className="font-light text-sm sm:text-base text-ink/80">{value}</span>
@@ -69,13 +69,13 @@ export default function About() {
               {stat.lines.map((line) => (
                 <p
                   key={line}
-                  className="font-bold leading-none tracking-tighter text-ink"
+                  className="font-display uppercase leading-none tracking-tight text-ink"
                   style={{ fontSize: 'clamp(2.2rem, 5vw, 4.5rem)' }}
                 >
                   {line}
                 </p>
               ))}
-              <p className="text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium mt-2.5">{stat.label}</p>
+              <p className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink/60 font-medium mt-2.5">{stat.label}</p>
             </motion.div>
           ))}
         </div>

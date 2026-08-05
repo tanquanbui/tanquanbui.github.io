@@ -9,16 +9,17 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-space)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        display: ['var(--font-anton)', 'Impact', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
-        paper: '#F2E8D0',      // aged plaster — the iconic Saigon wall
-        ink: '#1C1208',        // deep old wood / shadow interior
-        clay: '#4A6B48',       // colonial shutter green
-        ash: '#8A7D6A',        // weathered concrete
-        linen: '#D8C9A8',      // aged trim / patina
-        parchment: '#EAD9BC',  // lighter plaster
-        sand: '#E2D0B0',       // sun-faded wall
+        paper: '#F5F2EA',      // raw off-white stock
+        ink: '#0A0A0A',        // near-black, the primary mark
+        clay: '#FF3D1A',       // signal — the one hot accent
+        ash: '#6E6B63',        // working gray
+        linen: '#D8D4C8',      // hairline / rule color
+        parchment: '#D4FF3D',  // secondary pop — electric lime
+        sand: '#EDE9DD',       // low-contrast fill
       },
       animation: {
         'fade-in': 'fadeIn 0.8s ease forwards',

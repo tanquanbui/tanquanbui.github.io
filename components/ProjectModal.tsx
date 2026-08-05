@@ -50,7 +50,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
   };
 
   const project = projects[selectedIndex];
-  const accent = project.accent ?? '#A896D0';
+  const accent = project.accent ?? '#FF3D1A';
 
   return (
     <AnimatePresence>
@@ -83,7 +83,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ type: 'spring', stiffness: 280, damping: 32 }}
-            className="fixed bottom-0 left-0 right-0 z-[100] bg-paper rounded-t-2xl overflow-hidden flex flex-col"
+            className="fixed bottom-0 left-0 right-0 z-[100] bg-paper border-t-2 border-ink overflow-hidden flex flex-col"
             style={{ maxHeight: '88vh', y: dragY, opacity: panelOpacity }}
           >
             {/* Drag handle */}
@@ -95,19 +95,19 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
             <div className="flex items-center justify-between px-6 sm:px-10 py-4 shrink-0">
               <div className="flex items-center gap-3">
                 <span
-                  className="text-[10px] tracking-[0.28em] uppercase font-semibold"
+                  className="font-mono text-[10px] tracking-[0.28em] uppercase font-bold"
                   style={{ color: accent }}
                 >
                   {project.tag}
                 </span>
                 <span className="text-ink/20 text-[10px]">—</span>
-                <span className="text-[10px] tracking-[0.2em] uppercase text-ink/40 font-medium">
+                <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink/40 font-medium">
                   {project.year}
                 </span>
               </div>
               <button
                 onClick={onClose}
-                className="w-8 h-8 rounded-full bg-linen/60 hover:bg-linen flex items-center justify-center transition-colors text-ink/50 hover:text-ink"
+                className="w-8 h-8 border border-ink/20 hover:border-ink hover:bg-ink flex items-center justify-center transition-colors text-ink/50 hover:text-paper"
               >
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                   <path d="M1 1L9 9M9 1L1 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
@@ -125,10 +125,10 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                   initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative w-full rounded-xl mb-8 sm:mb-10 overflow-hidden"
+                  className="relative w-full border border-ink/15 mb-8 sm:mb-10 overflow-hidden"
                   style={{
                     height: 'clamp(180px, 38vh, 360px)',
-                    background: project.gradient ?? 'linear-gradient(145deg, #C8B6E8, #ECC6D6)',
+                    background: project.gradient ?? 'linear-gradient(145deg, #FF6B4A, #FF3D1A)',
                   }}
                 >
                   {project.screenshot && (
@@ -151,15 +151,15 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                     transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <h2
-                      className="font-bold leading-[0.88] tracking-tighter text-ink mb-3"
+                      className="font-display uppercase leading-[0.88] tracking-tight text-ink mb-3"
                       style={{ fontSize: 'clamp(2.4rem, 8vw, 7rem)' }}
                     >
                       {project.title}
                     </h2>
 
                     {project.subtitle && (
-                      <p className="font-serif font-light italic mb-5 sm:mb-7"
-                        style={{ fontSize: 'clamp(1rem, 2vw, 1.2rem)', color: accent + 'CC' }}>
+                      <p className="font-mono mb-5 sm:mb-7"
+                        style={{ fontSize: 'clamp(0.85rem, 1.6vw, 1rem)', color: accent + 'CC' }}>
                         {project.subtitle}
                       </p>
                     )}
@@ -174,7 +174,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                         {project.stack.map((tech) => (
                           <span
                             key={tech}
-                            className="text-[10px] tracking-[0.14em] uppercase font-medium px-3 py-1.5 rounded-full bg-linen/60 text-ink/65"
+                            className="font-mono text-[10px] tracking-[0.14em] uppercase font-medium px-3 py-1.5 border border-ink/20 text-ink/65"
                           >
                             {tech}
                           </span>
@@ -187,7 +187,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                         href={project.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-[11px] tracking-[0.2em] uppercase font-semibold text-paper transition-colors"
+                        className="inline-flex items-center gap-2 px-5 py-3 font-mono text-[11px] tracking-[0.2em] uppercase font-bold text-paper transition-colors"
                         style={{ backgroundColor: accent }}
                         whileHover={{ scale: 1.04 }}
                         whileTap={{ scale: 0.97 }}
@@ -201,10 +201,10 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
             </div>
 
             {/* Footer nav */}
-            <div className="shrink-0 border-t border-linen/50 px-6 sm:px-10 py-4 flex items-center justify-between bg-paper">
+            <div className="shrink-0 border-t border-ink/15 px-6 sm:px-10 py-4 flex items-center justify-between bg-paper">
               <motion.button
                 onClick={() => go(-1)}
-                className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-medium text-ink/50 hover:text-ink transition-colors"
+                className="font-mono flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-medium text-ink/50 hover:text-ink transition-colors"
                 whileHover={{ x: -3 }}
                 whileTap={{ scale: 0.96 }}
               >
@@ -220,11 +220,11 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
                   <button
                     key={i}
                     onClick={() => onChange(i)}
-                    className="rounded-full transition-all duration-300"
+                    className="transition-all duration-300"
                     style={{
                       width: i === selectedIndex ? 20 : 6,
-                      height: 6,
-                      backgroundColor: i === selectedIndex ? accent : '#D4CCC0',
+                      height: 3,
+                      backgroundColor: i === selectedIndex ? accent : '#D8D4C8',
                     }}
                   />
                 ))}
@@ -232,7 +232,7 @@ export default function ProjectModal({ projects, selectedIndex, isOpen, onClose,
 
               <motion.button
                 onClick={() => go(1)}
-                className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-medium text-ink/50 hover:text-ink transition-colors"
+                className="font-mono flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase font-medium text-ink/50 hover:text-ink transition-colors"
                 whileHover={{ x: 3 }}
                 whileTap={{ scale: 0.96 }}
               >

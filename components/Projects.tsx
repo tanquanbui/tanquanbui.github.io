@@ -41,8 +41,8 @@ function PitStopDecor() {
       {/* Speed bars */}
       {Array.from({ length: 22 }, (_, i) => {
         const x = 8 + i * 19;
-        const h = 16 + Math.sin(i * 0.7) * 12 + Math.sin(i * 1.7) * 10;
-        return <rect key={i} x={x} y={210 - h} width="6" height={h} rx="2" fill="#1C1A1A" opacity={0.09} />;
+        const h = Math.max(2, (16 + Math.sin(i * 0.7) * 12 + Math.sin(i * 1.7) * 10)).toFixed(2);
+        return <rect key={i} x={x} y={(210 - Number(h)).toFixed(2)} width="6" height={h} rx="2" fill="#1C1A1A" opacity={0.09} />;
       })}
     </svg>
   );
@@ -82,8 +82,8 @@ function PersonifyDecor() {
       {/* Equalizer bars */}
       {Array.from({ length: 18 }, (_, i) => {
         const x = 18 + i * 21;
-        const h = 22 + Math.sin(i * 0.9) * 18 + Math.sin(i * 2.1) * 12;
-        return <rect key={i} x={x} y={130 - h / 2} width="9" height={h} rx="4" fill="#1C1A1A" opacity={0.1} />;
+        const h = Math.max(4, (22 + Math.sin(i * 0.9) * 18 + Math.sin(i * 2.1) * 12)).toFixed(2);
+        return <rect key={i} x={x} y={(130 - Number(h) / 2).toFixed(2)} width="9" height={h} rx="4" fill="#1C1A1A" opacity={0.1} />;
       })}
     </svg>
   );
@@ -177,7 +177,7 @@ function ProjectCard({
       viewport={{ once: true }}
       transition={{ duration: 0.9, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       whileHover="hovered"
-      className="group relative w-full overflow-hidden rounded-2xl text-left cursor-pointer"
+      className="group relative w-full overflow-hidden border border-ink/15 text-left cursor-pointer"
       style={{
         minHeight: 'clamp(260px, 50vh, 480px)',
         background: project.gradient,
@@ -207,9 +207,9 @@ function ProjectCard({
           0{index + 1}
         </span>
         <div className="flex items-center gap-4">
-          <span className="text-[10px] tracking-[0.22em] uppercase text-ink/65">{project.year}</span>
+          <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-ink/65">{project.year}</span>
           <span
-            className="text-[10px] tracking-[0.22em] uppercase"
+            className="font-mono text-[10px] tracking-[0.22em] uppercase"
             style={{ color: project.accent + 'BB' }}
           >
             {project.tag}
@@ -233,7 +233,7 @@ function ProjectCard({
       <div className="absolute bottom-0 left-0 right-0 flex items-end justify-between px-7 sm:px-10 pb-7">
         <div>
           <motion.h3
-            className="font-bold tracking-tighter text-ink leading-none"
+            className="font-display uppercase tracking-tight text-ink leading-none"
             style={{ fontSize: 'clamp(2rem, 4.5vw, 3.8rem)' }}
             variants={{ hovered: { y: -5 } }}
             transition={{ type: 'spring', stiffness: 300, damping: 26 }}
@@ -241,7 +241,7 @@ function ProjectCard({
             {project.title}
           </motion.h3>
           <motion.p
-            className="text-[11px] tracking-[0.18em] uppercase text-ink/45 mt-2"
+            className="font-mono text-[11px] tracking-[0.18em] uppercase text-ink/45 mt-2"
             variants={{ hovered: { opacity: 0 } }}
             transition={{ duration: 0.2 }}
           >

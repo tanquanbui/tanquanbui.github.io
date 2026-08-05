@@ -40,16 +40,16 @@ export default function Philosophy() {
             className="group grid grid-cols-[3rem_1fr] sm:grid-cols-[6rem_1fr] lg:grid-cols-[10rem_1fr] gap-6 sm:gap-10 py-10 sm:py-14 border-b border-linen/50 items-start"
           >
             {/* Number */}
-            <span className="text-[11px] tracking-[0.2em] uppercase text-ink/35 font-medium pt-1 sm:pt-2">
+            <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-ink/35 font-medium pt-1 sm:pt-2">
               {p.index}
             </span>
 
             {/* Content */}
             <div className="flex flex-col gap-4">
               <motion.h3
-                className="font-bold tracking-tighter text-ink leading-none"
+                className="font-display uppercase tracking-tight text-ink leading-none"
                 style={{ fontSize: 'clamp(1.6rem, 4vw, 3.2rem)' }}
-                whileHover={{ x: 6, transition: { type: 'spring', stiffness: 400, damping: 20 } }}
+                whileHover={{ x: 6, color: '#FF3D1A', transition: { type: 'spring', stiffness: 400, damping: 20 } }}
               >
                 {p.heading}
               </motion.h3>
