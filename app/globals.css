@@ -17,34 +17,15 @@ body {
 }
 
 /* Film grain — a static SVG-noise data URI tiled over the whole page.
-   Cheap: one paint, no per-frame cost, just adds material texture. */
+   No mix-blend-mode: blend compositing on a full-viewport fixed layer
+   forces the browser to recompute blending on every scroll/paint frame
+   for the entire page, which tanks scroll performance. Plain low-opacity
+   background is visually close enough and costs one paint, ever. */
 .grain-overlay {
   position: fixed;
   inset: 0;
   z-index: 9998;
   pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
+  opacity: 0.025;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.bg-blob {
-  animation-name: blob-float;
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite;
-  will-change: transform;
-  transform: translateZ(0);
-}
-
-@keyframes blob-float {
-  0% { transform: translate3d(0, 0, 0); }
-  33% { transform: translate3d(var(--x1), var(--y1), 0); }
-  66% { transform: translate3d(var(--x2), var(--y2), 0); }
-  100% { transform: translate3d(0, 0, 0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bg-blob {
-    animation: none;
-  }
 }

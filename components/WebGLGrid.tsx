@@ -58,9 +58,20 @@ export default function WebGLGrid() {
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    // No antialias: this is a flat grid, MSAA buys nothing here but costs
+    // a full supersampled pass every frame.
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: false, powerPreference: 'low-power' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1));
     mount.appendChild(renderer.domElement);
+
+    // Software-rendered WebGL (common on VMs, some sandboxed browsers,
+    // older/integrated GPUs with hardware accel disabled) chokes on a
+    // 60fps full-viewport shader loop. Detect it and fall back to a
+    // single static frame instead of animating.
+    const gl = renderer.getContext();
+    const dbgInfo = gl.getExtension('WEBGL_debug_renderer_info');
+    const rendererStr = dbgInfo ? String(gl.getParameter(dbgInfo.UNMASKED_RENDERER_WEBGL)) : '';
+    const isSoftwareRenderer = /swiftshader|llvmpipe|software|microsoft basic render/i.test(rendererStr);
 
     const scene = new THREE.Scene();
     const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
@@ -123,7 +134,7 @@ export default function WebGLGrid() {
       cancelAnimationFrame(rafId);
     };
 
-    if (reduceMotion) {
+    if (reduceMotion || isSoftwareRenderer) {
       // Render a single static frame, no rAF loop.
       resize();
       renderer.render(scene, camera);
