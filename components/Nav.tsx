@@ -13,7 +13,7 @@ export default function Nav() {
 
   const links: { view: View; label: string }[] = [
     { view: 'about', label: t.about.title },
-    { view: 'philosophy', label: t.philosophy.title },
+    { view: 'story', label: t.story.title },
     { view: 'projects', label: t.work.title },
     { view: 'skills', label: t.skills.title },
     { view: 'contact', label: t.contact.title },

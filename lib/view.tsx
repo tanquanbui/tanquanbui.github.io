@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, type ReactNode } from 'react';
 
-export const views = ['about', 'philosophy', 'projects', 'skills', 'contact'] as const;
+export const views = ['about', 'story', 'projects', 'skills', 'contact'] as const;
 export type View = 'menu' | (typeof views)[number];
 
 interface ViewCtx {
