@@ -9,7 +9,7 @@ import Nav from '@/components/Nav';
 import GameMenu from '@/components/GameMenu';
 import ViewFrame from '@/components/ViewFrame';
 import About from '@/components/About';
-import Philosophy from '@/components/Philosophy';
+import Story from '@/components/Story';
 import Projects from '@/components/Projects';
 import Skills from '@/components/Skills';
 import Contact from '@/components/Contact';
@@ -34,8 +34,8 @@ function ActiveView() {
       {view === 'about' && (
         <ViewFrame key="about"><About /></ViewFrame>
       )}
-      {view === 'philosophy' && (
-        <ViewFrame key="philosophy"><Philosophy /></ViewFrame>
+      {view === 'story' && (
+        <ViewFrame key="story"><Story /></ViewFrame>
       )}
       {view === 'projects' && (
         <ViewFrame key="projects"><Projects /></ViewFrame>

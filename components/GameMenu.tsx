@@ -68,7 +68,7 @@ export default function GameMenu() {
 
   const items: { index: string; label: string; view: View }[] = [
     { index: '01', label: t.about.title, view: 'about' },
-    { index: '02', label: t.philosophy.title, view: 'philosophy' },
+    { index: '02', label: t.story.title, view: 'story' },
     { index: '03', label: t.work.title, view: 'projects' },
     { index: '04', label: t.skills.title, view: 'skills' },
     { index: '05', label: t.contact.title, view: 'contact' },
