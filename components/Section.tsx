@@ -19,21 +19,21 @@ export default function Section({ id, title, children, alt = false, index }: Pro
     >
       <div className="max-w-6xl mx-auto">
 
-        {/* Section header — horizontal rule with number + title */}
+        {/* Section header — huge index numeral + rule + mono title */}
         <motion.div
           initial={{ opacity: 0, y: -8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="flex items-center gap-4 mb-16 sm:mb-20"
+          className="flex items-end gap-5 sm:gap-7 mb-14 sm:mb-20"
         >
           {index !== undefined && (
-            <span className="text-xs tracking-[0.2em] uppercase text-ink/50 font-semibold shrink-0">
+            <span className="font-display leading-[0.8] text-ink/10 shrink-0" style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}>
               {String(index).padStart(2, '0')}
             </span>
           )}
-          <div className="flex-1 h-px bg-linen" />
-          <h2 className="text-xs tracking-[0.2em] uppercase text-ink/70 font-semibold shrink-0">
+          <div className="flex-1 h-px bg-ink/25 mb-3" />
+          <h2 className="font-mono text-xs tracking-[0.25em] uppercase text-ink font-bold shrink-0 mb-3">
             {title}
           </h2>
         </motion.div>

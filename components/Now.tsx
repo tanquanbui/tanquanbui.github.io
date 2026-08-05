@@ -43,7 +43,7 @@ export default function Now() {
             transition={{ duration: 0.6, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
             className="bg-paper p-8 sm:p-10 flex flex-col gap-4 group hover:bg-sand/40 transition-colors duration-300"
           >
-            <span className="text-[10px] tracking-[0.3em] uppercase text-ash/60 font-medium">
+            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-clay font-bold">
               {item.category}
             </span>
             <p
@@ -61,7 +61,7 @@ export default function Now() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.5 }}
-        className="text-[10px] tracking-[0.25em] uppercase text-ash/40 mt-8"
+        className="font-mono text-[10px] tracking-[0.25em] uppercase text-ash/40 mt-8"
       >
         Updated May 2026 — Melbourne
       </motion.p>

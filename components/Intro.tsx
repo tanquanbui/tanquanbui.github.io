@@ -46,7 +46,7 @@ export default function Intro() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="absolute top-7 left-7 sm:left-10"
           >
-            <span className="text-[11px] tracking-[0.38em] uppercase text-ink/40">QB</span>
+            <span className="font-mono text-[11px] tracking-[0.38em] uppercase text-ink/40">QB</span>
           </motion.div>
 
           {/* Center: big percentage */}
@@ -55,7 +55,7 @@ export default function Intro() {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="font-bold tracking-tighter leading-none text-ink tabular-nums select-none"
+              className="font-display leading-none text-ink tabular-nums select-none"
               style={{ fontSize: 'clamp(5rem, 22vw, 14rem)' }}
             >
               {String(display).padStart(2, '0')}
@@ -88,7 +88,7 @@ export default function Intro() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.3 }}
-              className="text-[10px] tracking-[0.28em] uppercase text-ash/40 mt-3"
+              className="font-mono text-[10px] tracking-[0.28em] uppercase text-ash/40 mt-3"
             >
               Loading
             </motion.p>

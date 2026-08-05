@@ -12,11 +12,11 @@ const repeated = [...items, ...items, ...items];
 
 export default function Marquee() {
   return (
-    <div className="overflow-hidden border-y border-linen py-4 select-none">
+    <div className="overflow-hidden border-y border-ink py-4 select-none">
       <div className="flex gap-0 animate-marquee whitespace-nowrap">
         {repeated.map((item, i) => (
           <span key={i} className="inline-flex items-center gap-6 px-6">
-            <span className="text-[11px] tracking-[0.25em] uppercase font-sans text-ash">
+            <span className="font-mono text-[11px] tracking-[0.25em] uppercase font-bold text-ink">
               {item}
             </span>
             <span className="text-clay text-xs">✦</span>

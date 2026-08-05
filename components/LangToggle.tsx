@@ -14,7 +14,7 @@ export default function LangToggle() {
       onClick={toggle}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="fixed bottom-7 right-6 z-50 text-[10px] tracking-[0.3em] uppercase text-ash/50 hover:text-ash transition-colors duration-300"
+      className="fixed bottom-7 right-6 z-50 font-mono text-[10px] tracking-[0.3em] uppercase text-ash/50 hover:text-ash transition-colors duration-300"
     >
       {lang === 'en' ? 'VI' : 'EN'}
     </motion.button>

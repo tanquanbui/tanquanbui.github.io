@@ -20,7 +20,7 @@ export default function Contact() {
 
         {/* Big heading — left */}
         <motion.p
-          className="leading-[0.82] tracking-tighter text-ink"
+          className="font-display leading-[0.82] tracking-tight text-ink uppercase"
           style={{ fontSize: 'clamp(2.8rem, 13vw, 12rem)' }}
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,8 +28,8 @@ export default function Contact() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           whileHover={{ scale: 1.01, transition: { type: 'spring', stiffness: 300, damping: 20 } }}
         >
-          <span className="block font-bold">{lets}</span>
-          <span className="block font-serif font-light italic text-clay">{talk}</span>
+          <span className="block">{lets}</span>
+          <span className="block text-clay">{talk}</span>
         </motion.p>
 
         {/* Links — right, bottom-aligned */}
@@ -37,21 +37,21 @@ export default function Contact() {
           {links.map(({ label, href, display }, i) => (
             <motion.div
               key={label}
-              className="flex items-center gap-6 py-4 sm:py-5 border-b border-linen/40"
+              className="flex items-center gap-6 py-4 sm:py-5 border-b border-ink/15"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ type: 'spring', stiffness: 180, damping: 20, delay: 0.1 + i * 0.09 }}
             >
-              <span className="text-xs tracking-[0.18em] uppercase text-ink/65 font-medium w-14 shrink-0">
+              <span className="font-mono text-xs tracking-[0.18em] uppercase text-ink/65 font-medium w-14 shrink-0">
                 {label}
               </span>
               <motion.a
                 href={href}
                 target={href.startsWith('http') ? '_blank' : undefined}
                 rel="noopener noreferrer"
-                className="font-light text-sm text-ink break-all sm:whitespace-nowrap"
-                whileHover={{ x: 5, color: '#4A6B48', transition: { type: 'spring', stiffness: 500, damping: 20 } }}
+                className="font-mono text-sm text-ink break-all sm:whitespace-nowrap"
+                whileHover={{ x: 5, color: '#FF3D1A', transition: { type: 'spring', stiffness: 500, damping: 20 } }}
                 whileTap={{ scale: 0.97 }}
               >
                 {display}

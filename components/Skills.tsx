@@ -33,7 +33,7 @@ export default function Skills() {
           >
             {/* Number left */}
             <motion.span
-              className="font-bold text-xl sm:text-3xl leading-none tracking-tighter text-ink/20 group-hover:text-clay/70 select-none shrink-0"
+              className="font-mono text-xl sm:text-3xl leading-none tracking-tight text-ink/20 group-hover:text-clay/70 select-none shrink-0"
               transition={{ type: 'spring', stiffness: 400, damping: 12 }}
             >
               {String(i + 1).padStart(2, '0')}
@@ -50,7 +50,7 @@ export default function Skills() {
 
             {/* Skill name right */}
             <motion.span
-              className="font-bold tracking-tight text-ink group-hover:text-clay shrink-0"
+              className="font-display uppercase tracking-tight text-ink group-hover:text-clay shrink-0"
               style={{ fontSize: 'clamp(1.2rem, 3vw, 2.4rem)' }}
               whileHover={{ rotate: i % 2 === 0 ? 1.5 : -1.5, scale: 1.03, transition: { type: 'spring', stiffness: 400, damping: 10 } }}
             >
