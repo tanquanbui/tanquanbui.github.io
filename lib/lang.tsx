@@ -27,8 +27,10 @@ export const translations = {
       ],
     },
     work: { title: 'Work' },
+    philosophy: { title: 'Philosophy' },
     skills: { title: 'Skills' },
     contact: { title: 'Contact', lets: "Let's", talk: 'Talk.' },
+    menu: { start: 'Enter Site', back: 'Menu' },
   },
   vi: {
     tagline: 'xây dựng web từ Melbourne',
@@ -52,8 +54,10 @@ export const translations = {
       ],
     },
     work: { title: 'Dự án' },
+    philosophy: { title: 'Triết lý' },
     skills: { title: 'Kỹ năng' },
     contact: { title: 'Liên hệ', lets: 'Hãy', talk: 'nói chuyện.' },
+    menu: { start: 'Vào trang', back: 'Menu' },
   },
 } as const;
 

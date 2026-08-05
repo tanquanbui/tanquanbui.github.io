@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Section from './Section';
+import { useLang } from '@/lib/lang';
 
 const principles = [
   {
@@ -27,8 +28,9 @@ const principles = [
 ];
 
 export default function Philosophy() {
+  const { t } = useLang();
   return (
-    <Section id="philosophy" title="Philosophy" index={2}>
+    <Section id="philosophy" title={t.philosophy.title} index={2}>
       <div className="flex flex-col">
         {principles.map((p, i) => (
           <motion.div

@@ -1,22 +1,28 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
 import { useState } from 'react';
 import { useLang } from '@/lib/lang';
+import { useView, type View } from '@/lib/view';
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
   const { t } = useLang();
+  const { setView } = useView();
 
-  const links = [
-    { href: '#about', label: t.nav[0] },
-    { href: '#timeline', label: t.timeline.title },
-    { href: '#projects', label: t.nav[1] },
-    { href: '#skills', label: t.nav[2] },
-    { href: '#contact', label: t.nav[3] },
+  const links: { view: View; label: string }[] = [
+    { view: 'about', label: t.about.title },
+    { view: 'philosophy', label: t.philosophy.title },
+    { view: 'projects', label: t.work.title },
+    { view: 'skills', label: t.skills.title },
+    { view: 'contact', label: t.contact.title },
   ];
+
+  const go = (v: View) => {
+    setView(v);
+    close();
+  };
 
   return (
     <>
@@ -47,7 +53,7 @@ export default function Nav() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-paper/97 backdrop-blur-md flex flex-col justify-center px-12 sm:px-20"
+            className="fixed inset-0 z-[60] bg-paper/97 backdrop-blur-md flex flex-col justify-center px-12 sm:px-20"
           >
             {/* Close */}
             <button
@@ -57,10 +63,17 @@ export default function Nav() {
               Close ✕
             </button>
 
+            <button
+              onClick={() => go('menu')}
+              className="absolute top-8 left-8 font-mono text-[11px] tracking-[0.3em] uppercase text-ash hover:text-ink transition-colors"
+            >
+              ← Main Menu
+            </button>
+
             <ul className="flex flex-col gap-2">
               {links.map((link, i) => (
                 <motion.li
-                  key={link.href}
+                  key={link.view}
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 30 }}
@@ -68,14 +81,13 @@ export default function Nav() {
                   className="flex items-baseline gap-4"
                 >
                   <span className="font-mono text-xs text-clay shrink-0">0{i + 1}</span>
-                  <Link
-                    href={link.href}
-                    onClick={close}
+                  <button
+                    onClick={() => go(link.view)}
                     className="block font-display uppercase tracking-tight text-ink hover:text-clay transition-colors duration-300"
                     style={{ fontSize: 'clamp(3rem, 12vw, 7rem)' }}
                   >
                     {link.label}
-                  </Link>
+                  </button>
                 </motion.li>
               ))}
             </ul>
