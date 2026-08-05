@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background-color: #F9F7F4;
   color: #1A1815;
@@ -17,4 +13,25 @@ body {
 ::selection {
   background-color: #1A1815;
   color: #F9F7F4;
+}
+
+.bg-blob {
+  animation-name: blob-float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@keyframes blob-float {
+  0% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(var(--x1), var(--y1), 0); }
+  66% { transform: translate3d(var(--x2), var(--y2), 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-blob {
+    animation: none;
+  }
 }
