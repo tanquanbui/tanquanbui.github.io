@@ -15,7 +15,7 @@ export default function Contact() {
   const { title, lets, talk } = t.contact;
 
   return (
-    <Section id="contact" title={title} alt index={4}>
+    <Section id="contact" title={title} alt index={5}>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-32 items-end">
 
         {/* Big heading — left */}

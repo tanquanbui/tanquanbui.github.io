@@ -19,7 +19,7 @@ const skills = [
 export default function Skills() {
   const { t } = useLang();
   return (
-    <Section id="skills" title={t.skills.title} index={3}>
+    <Section id="skills" title={t.skills.title} index={4}>
       <div className="flex flex-col">
         {skills.map((skill, i) => (
           <motion.div

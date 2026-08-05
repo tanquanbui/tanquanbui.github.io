@@ -275,7 +275,7 @@ export default function Projects() {
 
   return (
     <>
-      <Section id="projects" title={t.work.title} alt index={2}>
+      <Section id="projects" title={t.work.title} alt index={3}>
         <div className="flex flex-col gap-4 sm:gap-5">
           {projects.map((project, i) => (
             <ProjectCard key={project.title} project={project} index={i} onOpen={() => open(i)} />

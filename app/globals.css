@@ -2,13 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Game-menu layout: the page itself never scrolls. Each view (About,
+   Projects, ...) is a fixed full-viewport panel that owns its own
+   internal scrolling — see components/ViewFrame.tsx. */
+html, body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
 body {
   background-color: #F5F2EA;
   color: #0A0A0A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 300;
-  overflow-x: hidden;
 }
 
 ::selection {
