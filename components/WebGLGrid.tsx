@@ -3,12 +3,14 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
-// A procedural blueprint-grid shader with a skyline horizon that eternally
-// morphs between Melbourne (Eureka Tower, Rialto) and Ho Chi Minh City
-// (Landmark 81, Bitexco) — the two cities closest to home. Warps toward
-// the cursor and pulses an accent glow at the point of contact. Runs only
-// while the hero is on-screen (IntersectionObserver) and pauses on
-// prefers-reduced-motion.
+// A procedural blueprint-grid shader with a thin skyline horizon etched
+// into it — morphing between Melbourne (Eureka Tower, Rialto) and Ho Chi
+// Minh City (Landmark 81, Bitexco), the two cities closest to home. Drawn
+// as a single-weight outline in the same ink/accent palette as the grid
+// itself, so it reads as one more line in the blueprint rather than a
+// separate illustration pasted on top. Warps toward the cursor and pulses
+// an accent glow at the point of contact. Runs only while the hero is
+// on-screen (IntersectionObserver) and pauses on prefers-reduced-motion.
 const VERTEX = /* glsl */ `
   varying vec2 vUv;
   void main() {
@@ -25,41 +27,44 @@ const FRAGMENT = /* glsl */ `
   uniform float uTime;
   uniform float uCityMix;
 
-  // Rough silhouette of a single building: 1.0 inside its footprint, else 0.
+  // Rough silhouette of a single building, antialiased at its edges.
   float building(float x, float center, float halfWidth, float height) {
-    float inside = step(abs(x - center), halfWidth);
-    return inside * height;
+    float edge = smoothstep(halfWidth, halfWidth - 0.003, abs(x - center));
+    return edge * height;
   }
 
   // Melbourne CBD skyline, left to right: low-rise, Rialto twins,
-  // Eureka Tower's gold-capped spike, then the riverside cluster.
+  // Eureka Tower's spike, then the riverside cluster. Narrow bars with
+  // real gaps between them, like a horizon sketch rather than solid mass.
   float skylineMelbourne(float x) {
     float h = 0.0;
-    h = max(h, building(x, 0.09, 0.045, 0.26));
-    h = max(h, building(x, 0.18, 0.05, 0.40));
-    h = max(h, building(x, 0.27, 0.035, 0.56));
-    h = max(h, building(x, 0.335, 0.03, 0.60));
-    h = max(h, building(x, 0.44, 0.05, 0.48));
-    h = max(h, building(x, 0.555, 0.045, 0.94));
-    h = max(h, building(x, 0.655, 0.045, 0.44));
-    h = max(h, building(x, 0.745, 0.05, 0.58));
-    h = max(h, building(x, 0.85, 0.045, 0.33));
+    h = max(h, building(x, 0.08, 0.018, 0.20));
+    h = max(h, building(x, 0.15, 0.014, 0.32));
+    h = max(h, building(x, 0.21, 0.012, 0.44));
+    h = max(h, building(x, 0.26, 0.010, 0.48));
+    h = max(h, building(x, 0.35, 0.016, 0.36));
+    h = max(h, building(x, 0.46, 0.014, 0.90));
+    h = max(h, building(x, 0.57, 0.014, 0.40));
+    h = max(h, building(x, 0.66, 0.016, 0.52));
+    h = max(h, building(x, 0.76, 0.012, 0.28));
+    h = max(h, building(x, 0.87, 0.014, 0.18));
     return h;
   }
 
-  // Ho Chi Minh City skyline: Times Square-ish low-rise, Bitexco's notch,
-  // Landmark 81's needle-thin record-height spike, District 1 cluster.
+  // Ho Chi Minh City skyline: low-rise, Bitexco's mass, Landmark 81's
+  // needle-thin record-height spike, District 1 cluster.
   float skylineHCMC(float x) {
     float h = 0.0;
-    h = max(h, building(x, 0.08, 0.04, 0.20));
-    h = max(h, building(x, 0.165, 0.045, 0.36));
-    h = max(h, building(x, 0.255, 0.05, 0.50));
-    h = max(h, building(x, 0.365, 0.045, 0.66));
-    h = max(h, building(x, 0.50, 0.03, 0.98));
-    h = max(h, building(x, 0.60, 0.045, 0.40));
-    h = max(h, building(x, 0.70, 0.05, 0.54));
-    h = max(h, building(x, 0.80, 0.04, 0.28));
-    h = max(h, building(x, 0.895, 0.045, 0.18));
+    h = max(h, building(x, 0.07, 0.016, 0.16));
+    h = max(h, building(x, 0.14, 0.014, 0.30));
+    h = max(h, building(x, 0.22, 0.016, 0.42));
+    h = max(h, building(x, 0.31, 0.014, 0.58));
+    h = max(h, building(x, 0.44, 0.008, 0.94));
+    h = max(h, building(x, 0.53, 0.014, 0.34));
+    h = max(h, building(x, 0.62, 0.016, 0.48));
+    h = max(h, building(x, 0.72, 0.012, 0.24));
+    h = max(h, building(x, 0.80, 0.010, 0.36));
+    h = max(h, building(x, 0.89, 0.014, 0.16));
     return h;
   }
 
@@ -82,35 +87,27 @@ const FRAGMENT = /* glsl */ `
 
     float glow = smoothstep(0.55, 0.0, dist);
     float pulse = 0.85 + 0.15 * sin(uTime * 0.6);
-
-    // Cool Melbourne dusk vs. warm Ho Chi Minh City tropical gold, blended
-    // by the same slow-breathing mix that morphs the skyline below.
-    vec3 melbourneColor = vec3(0.36, 0.47, 0.58);
-    vec3 hcmcColor = vec3(0.98, 0.55, 0.16);
-    vec3 cityColor = mix(melbourneColor, hcmcColor, uCityMix);
-
     vec3 inkColor = vec3(0.04, 0.04, 0.04);
     vec3 accentColor = vec3(1.0, 0.24, 0.10);
     vec3 color = mix(inkColor, accentColor, glow * pulse);
 
     float alpha = line * mix(0.16, 0.85, glow);
 
-    // Skyline horizon: morphs between the two cities, warped by the same
-    // cursor push so it feels part of the same fabric as the grid.
-    float skylineBand = 0.6;
+    // Skyline: a low, thin horizon line — same ink/accent palette as the
+    // grid — that morphs its silhouette between the two cities. Kept
+    // short so it never competes with the wordmark or menu above it.
+    float skylineBand = 0.16;
     float mixedHeight = mix(skylineMelbourne(warped.x / aspect.x), skylineHCMC(warped.x / aspect.x), uCityMix);
+    float hasBuilding = step(0.001, mixedHeight);
     float skylineTop = mixedHeight * skylineBand;
-    if (vUv.y < skylineTop) {
-      float shade = mix(0.35, 0.85, vUv.y / max(skylineTop, 0.0001));
-      float windowNoise = fract(sin(dot(floor(warped * gridSize), vec2(12.9898, 78.233))) * 43758.5453);
-      float windows = step(0.82, windowNoise) * step(vUv.y, skylineTop - 0.01);
-      vec3 skylineFill = mix(inkColor, cityColor, shade * 0.6);
-      skylineFill += windows * cityColor * (0.5 + 0.5 * glow);
-      gl_FragColor = vec4(skylineFill, 0.92);
-      return;
-    }
 
-    gl_FragColor = vec4(color, alpha);
+    float outline = hasBuilding * smoothstep(0.007, 0.0, abs(vUv.y - skylineTop));
+    float ground = hasBuilding * step(vUv.y, skylineTop) * mix(0.10, 0.02, vUv.y / max(skylineTop, 0.0001));
+
+    vec3 finalColor = mix(color, mix(inkColor, accentColor, glow), outline);
+    float finalAlpha = max(alpha, max(outline * 0.8, ground));
+
+    gl_FragColor = vec4(finalColor, finalAlpha);
   }
 `;
 
