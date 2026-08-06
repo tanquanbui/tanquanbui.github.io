@@ -97,8 +97,10 @@ export default function GameMenu() {
           <span className="w-6 h-px bg-ink/40" />
           <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-ink/75">Creative Developer</span>
         </div>
-        <span className="hidden sm:block font-mono text-[11px] tracking-[0.2em] uppercase text-ink/70">
-          Melbourne, Australia
+        <span className="hidden sm:block relative font-mono text-[11px] tracking-[0.2em] uppercase text-ink/70">
+          {/* Cross-fades with the WebGL skyline's Melbourne ⇄ Ho Chi Minh City blend */}
+          <span className="city-label-melbourne">Melbourne, Australia</span>
+          <span className="city-label-hcmc absolute inset-0">Ho Chi Minh City, Vietnam</span>
         </span>
       </motion.div>
 

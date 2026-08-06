@@ -29,6 +29,26 @@ body {
    forces the browser to recompute blending on every scroll/paint frame
    for the entire page, which tanks scroll performance. Plain low-opacity
    background is visually close enough and costs one paint, ever. */
+/* Location label in GameMenu's header cross-fades between Melbourne and
+   Ho Chi Minh City in step with the WebGL skyline's blend (see
+   WebGLGrid.tsx, which flips [data-city-dominant] once the blend crosses
+   each threshold). A slow CSS transition — not a per-frame opacity tied
+   directly to the continuous blend value — keeps the text legible instead
+   of showing two overlapping half-opacity strings mid-cycle. */
+.city-label-melbourne,
+.city-label-hcmc {
+  transition: opacity 1.8s ease;
+}
+.city-label-hcmc {
+  opacity: 0;
+}
+[data-city-dominant='hcmc'] .city-label-melbourne {
+  opacity: 0;
+}
+[data-city-dominant='hcmc'] .city-label-hcmc {
+  opacity: 1;
+}
+
 .grain-overlay {
   position: fixed;
   inset: 0;
