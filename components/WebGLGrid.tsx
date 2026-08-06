@@ -74,7 +74,10 @@ const FRAGMENT = /* glsl */ `
     vec2 mouse = uMouse * aspect;
 
     float dist = length(st - mouse);
-    float push = smoothstep(0.55, 0.0, dist) * 0.10;
+    // Inverse-square falloff, like real gravity, instead of a flat radial
+    // gradient — the pull is sharp and strong right at the cursor and
+    // drops off fast, rather than a gentle even dome.
+    float push = clamp(0.014 / (dist * dist + 0.012), 0.0, 0.22);
     vec2 dir = (st - mouse) / (dist + 0.0001);
     vec2 warped = st + dir * push;
 
@@ -191,6 +194,15 @@ export default function WebGLGrid() {
     };
     window.addEventListener('mousemove', onMove);
 
+    // The warp point chases the cursor as a damped spring rather than a
+    // flat lerp, so it has real momentum — it overshoots and wobbles
+    // before settling, like something with mass caught in the gravity
+    // well instead of teleporting straight to the pointer.
+    const mouseVelocity = new THREE.Vector2(0, 0);
+    const springStiffness = 90;
+    const springDamping = 9;
+    let lastElapsed = 0;
+
     let rafId = 0;
     let running = false;
     const clock = new THREE.Clock();
@@ -198,8 +210,16 @@ export default function WebGLGrid() {
     const tick = () => {
       if (!running) return;
       const elapsed = clock.getElapsedTime();
+      const dt = Math.min(elapsed - lastElapsed, 1 / 30);
+      lastElapsed = elapsed;
       uniforms.uTime.value = elapsed;
-      uniforms.uMouse.value.lerp(targetMouse, 0.08);
+
+      const mouse = uniforms.uMouse.value;
+      const toTarget = targetMouse.clone().sub(mouse);
+      const accel = toTarget.multiplyScalar(springStiffness).sub(mouseVelocity.clone().multiplyScalar(springDamping));
+      mouseVelocity.addScaledVector(accel, dt);
+      mouse.addScaledVector(mouseVelocity, dt);
+
       setCityMix(0.5 + 0.5 * Math.sin(elapsed * 0.05));
       renderer.render(scene, camera);
       rafId = requestAnimationFrame(tick);
@@ -209,6 +229,7 @@ export default function WebGLGrid() {
       if (running) return;
       running = true;
       clock.start();
+      lastElapsed = 0;
       rafId = requestAnimationFrame(tick);
     };
     const stop = () => {
