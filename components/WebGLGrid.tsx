@@ -74,10 +74,12 @@ const FRAGMENT = /* glsl */ `
     vec2 mouse = uMouse * aspect;
 
     float dist = length(st - mouse);
-    // Inverse-square falloff, like real gravity, instead of a flat radial
-    // gradient — the pull is sharp and strong right at the cursor and
-    // drops off fast, rather than a gentle even dome.
-    float push = clamp(0.014 / (dist * dist + 0.012), 0.0, 0.22);
+    // Softened gravity (a Plummer potential, as used in N-body sims): the
+    // pull rises smoothly from zero at the cursor, peaks a short distance
+    // out, then decays — no hard clamp anywhere, so there's no plateau
+    // edge to read as a glitchy ring the way a clamped 1/r^2 falloff did.
+    float softening = 0.12;
+    float push = 0.007 * dist / pow(dist * dist + softening * softening, 1.5);
     vec2 dir = (st - mouse) / (dist + 0.0001);
     vec2 warped = st + dir * push;
 
